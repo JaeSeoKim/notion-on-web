@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { ToggleBlock } from "lib/util/notion/types"
-import Text from "./Text"
+import Text from "../Text"
 import Block from "."
+import Children from "./Children"
 
 export interface ToggleProps {
   block: ToggleBlock
@@ -53,11 +54,9 @@ const Toggle: React.FC<ToggleProps> = ({ block }) => {
         >
           <Text rich_texts={block.toggle.text} block_id={block.id}></Text>
         </span>
-        {isOpen &&
-          block.children &&
-          block.children.map((c_block) => (
-            <Block key={`${block.id}-children-${c_block.id}`} block={c_block} />
-          ))}
+        {isOpen && block.children && (
+          <Children blocks={block.children} parentId={block.id} />
+        )}
       </div>
     </div>
   )

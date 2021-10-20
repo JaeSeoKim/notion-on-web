@@ -10,8 +10,8 @@ export interface BlocksProps {
 const Blocks: React.FC<BlocksProps> = ({ blocks, parentId }) => {
   return (
     <>
-      {blocks.map((block) => (
-        <Block key={`p${parentId}-c${block.id}`} block={block} />
+      {blocks.map((block, index) => (
+        <Block key={`p${parentId}-c${block.id}`} block={block} index={index} />
       ))}
     </>
   )

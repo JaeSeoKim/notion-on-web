@@ -18,9 +18,18 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "katex": "^0.13.18",
+    "metascraper": "^5.24.9",
+    "metascraper-description": "^5.24.9",
+    "metascraper-image": "^5.24.9",
+    "metascraper-logo": "^5.24.9",
+    "metascraper-logo-favicon": "^5.24.9",
+    "metascraper-publisher": "^5.24.9",
+    "metascraper-title": "^5.24.9",
+    "metascraper-url": "^5.24.9",
     "next": "^11.1.2",
     "postcss": "^8.3.9",
     "postcss-import": "^14.0.2",
+    "puppeteer": "^10.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
@@ -35,8 +44,8 @@
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.0",
     "prettier": "2.4.1",
-    "typescript": "^4.4.4",
-    "husky": "^7.0.0"
+    "typescript": "^4.4.4"
   }
 }

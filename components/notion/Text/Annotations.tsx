@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { AnnotationsType } from "../../../lib/util/notion/types"
+import { AnnotationsType } from "lib/util/notion/types"
 
 export interface AnnotationsProps {
   annotations: AnnotationsType

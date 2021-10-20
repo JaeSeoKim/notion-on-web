@@ -1,5 +1,5 @@
 import React from "react"
-import RichText from "../RichText"
+import RichText from "./RichText"
 import { RichTextType } from "../../../lib/util/notion/types"
 
 export interface TextProps {

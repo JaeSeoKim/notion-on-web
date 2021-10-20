@@ -18,10 +18,15 @@
 
 - [X] @notionhq/client 사용 방법 분석하기
 - [x] page에 대한 모든 정보를 가져오는 함수 개발 하기 + 해당 Type 정의 하기
-- [ ]
+  - [x] page api end-point [`/page/[page_id]`](https://jaeseokim-dev.vercel.app/api/page/13cb8d2d3328425e815a1896267f5906)
 - [ ] 기본적인 Block Component 작성하기
-  - [ ] audio
+  - [x] paragraph
+  - [x] heading_1
+  - [x] heading_2
+  - [x] heading_3
+  - [x] audio
   - [ ] bookmark
+    - [x] OpenGraph-CORS API 만들기 [`/bookmark/[encodeURI]`](https://jaeseokim-dev.vercel.app/api/bookmark/https%3A%2F%2Fjaeseokim.dev)
   - [ ] bulleted_list_item
   - [ ] callout
   - [ ] child_database
@@ -30,12 +35,8 @@
   - [ ] embed
   - [ ] equation
   - [ ] file
-  - [ ] heading_1
-  - [ ] heading_2
-  - [ ] heading_3
   - [ ] image
   - [ ] numbered_list_item
-  - [ ] paragraph
   - [ ] to_do
   - [ ] toggle
   - [ ] table_of_contents

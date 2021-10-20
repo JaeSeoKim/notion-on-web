@@ -2,7 +2,7 @@ import cs from "classnames"
 import React from "react"
 import CheckBoxIcon from "../../icon/CheckBoxIcon"
 import { ToDoBlock } from "lib/util/notion/types"
-import Text from "./Text"
+import Text from "../Text"
 
 export interface ToDoProps {
   block: ToDoBlock

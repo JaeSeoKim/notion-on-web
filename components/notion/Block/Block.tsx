@@ -9,26 +9,33 @@ import NumberedListItem from "./NumberedListItem"
 import Paragraph from "./Paragraph"
 import ToDo from "./ToDo"
 import Toggle from "./Toggle"
-import Text from "./Text"
-import Blocks from "./Blocks"
+import Audio from "./Audio"
+import Bookmark from "./Bookmark"
 
 export interface BlockProps {
   block: BlockType
+  index: number
 }
 
-const Block: React.FC<BlockProps> = ({ block }) => {
-  const SwitchBlock: React.FC<BlockProps> = ({ block }) => {
+const Block: React.FC<BlockProps> = ({ block, index }) => {
+  const SwitchBlock: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "paragraph") {
       return <Paragraph block={block} />
     }
     if (block.type === "heading_1") {
-      return <Heading1 block={block} />
+      return <Heading1 block={block} index={index} />
     }
     if (block.type === "heading_2") {
-      return <Heading2 block={block} />
+      return <Heading2 block={block} index={index} />
     }
     if (block.type === "heading_3") {
-      return <Heading3 block={block} />
+      return <Heading3 block={block} index={index} />
+    }
+    if (block.type === "audio") {
+      return <Audio block={block} />
+    }
+    if (block.type === "bookmark") {
+      return <Bookmark block={block} />
     }
     if (block.type === "bulleted_list_item") {
       return <BulletedListItem block={block} />
@@ -50,8 +57,8 @@ const Block: React.FC<BlockProps> = ({ block }) => {
   }
 
   return (
-    <div block-id={block.id} className={`notion-${block.type}`}>
-      <SwitchBlock block={block} />
+    <div block-id={block.id} className={`notion-block`}>
+      <SwitchBlock block={block} index={index} />
     </div>
   )
 }

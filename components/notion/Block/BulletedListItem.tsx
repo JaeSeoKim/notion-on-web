@@ -1,6 +1,6 @@
 import React from "react"
 import { BulletedListItemBlock } from "lib/util/notion/types"
-import Text from "./Text"
+import Text from "../Text"
 import Blocks from "./Blocks"
 
 export interface BulletedListItemProps {

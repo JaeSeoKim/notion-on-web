@@ -1,6 +1,6 @@
 import React from "react"
 import { NumberedListItemBlock } from "lib/util/notion/types"
-import Text from "./Text"
+import Text from "../Text"
 
 export interface NumberedListItemProps {
   block: NumberedListItemBlock

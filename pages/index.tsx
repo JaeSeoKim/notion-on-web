@@ -4,7 +4,7 @@ import getPage from "../lib/util/notion/getPage"
 import Blocks from "../components/notion/Block/Blocks"
 
 export const getStaticProps = async (_ctx: GetStaticPropsContext) => {
-  const { data, info } = await getPage("13cb8d2d3328425e815a1896267f5906")
+  const { data, info } = await getPage("63ddded3f0614770b4157439bb79f926")
   return {
     props: {
       page: info,

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import getPage from "lib/util/notion/getPage"
+import { isNotionClientError } from "@notionhq/client/build/src"
 
 const getController = async (req: NextApiRequest, res: NextApiResponse) => {
   const { page_id } = req.query as {
@@ -9,7 +10,13 @@ const getController = async (req: NextApiRequest, res: NextApiResponse) => {
     const results = await getPage(page_id)
     res.status(200).json(results)
   } catch (error) {
-    res.status(504).json({ error: "internal server error" })
+    if (isNotionClientError(error)) {
+      res
+        .status(504)
+        .json({ error: "internal server error", message: error.message })
+    } else {
+      res.status(504).json({ error: "internal server error" })
+    }
   }
 }
 
