@@ -7,3 +7,6 @@ if (!rawSiteConfig) {
 export const htmlLang: string = rawSiteConfig["htmlLang"] || "en"
 export const googleAnalyticsTrackingId: string | null =
   rawSiteConfig["googleAnalyticsTrackingId"] || null
+
+export const isDev =
+  process.env.NODE_ENV === "development" || !process.env.NODE_ENV

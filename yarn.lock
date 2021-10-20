@@ -1251,6 +1251,13 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
+chrome-aws-lambda@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-10.1.0.tgz#ac43b4cdfc1fbb2275c62effada560858099501e"
+  integrity sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==
+  dependencies:
+    lambdafs "^2.0.3"
+
 chrono-node@2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/chrono-node/-/chrono-node-2.3.2.tgz#794f2ada1f75fe3da216501031812c0f3dd23c71"
@@ -3142,6 +3149,13 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
+lambdafs@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/lambdafs/-/lambdafs-2.0.3.tgz#f2acc53cf4862d29f1df654c327864b4faeb1d4a"
+  integrity sha512-5YWwZA/QKk09GdfcJ/ABVO+bpFoGlnTBa5jmyM8Kt9yIzl2lDDVBPLK+Aenq2UEcuDpqxXIYI5zLB7VZNepTrg==
+  dependencies:
+    tar-fs "^2.1.1"
+
 language-subtag-registry@~0.3.2:
   version "0.3.21"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.21.tgz#04ac218bea46f04cb039084602c6da9e788dd45a"
@@ -3491,6 +3505,11 @@ minizlib@^2.0.0, minizlib@^2.1.1:
   dependencies:
     minipass "^3.0.0"
     yallist "^4.0.0"
+
+mkdirp-classic@^0.5.2:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz#fa10c9115cc6d8865be221ba47ee9bed78601113"
+  integrity sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==
 
 mkdirp@^0.5.1:
   version "0.5.5"
@@ -4308,10 +4327,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer@^10.4.0:
+puppeteer-core@^10.4.0:
   version "10.4.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-10.4.0.tgz#a6465ff97fda0576c4ac29601406f67e6fea3dc7"
-  integrity sha512-2cP8mBoqnu5gzAVpbZ0fRaobBWZM8GEUF4I1F6WbgHrKV/rz7SX8PG2wMymZgD0wo0UBlg2FBPNxlF/xlqW6+w==
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-10.4.0.tgz#4e2da57c52339b8c07cd9362922020eb3c3c95bf"
+  integrity sha512-KU8zyb7AIOqNjLCN3wkrFXxh+EVaG+zrs2P03ATNjc3iwSxHsu5/EvZiREpQ/IJiT9xfQbDVgKcsvRuzLCxglQ==
   dependencies:
     debug "4.3.1"
     devtools-protocol "0.0.901419"
@@ -5073,7 +5092,17 @@ tar-fs@2.0.0:
     pump "^3.0.0"
     tar-stream "^2.0.0"
 
-tar-stream@^2.0.0:
+tar-fs@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.1.tgz#489a15ab85f1f0befabb370b7de4f9eb5cbe8784"
+  integrity sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==
+  dependencies:
+    chownr "^1.1.1"
+    mkdirp-classic "^0.5.2"
+    pump "^3.0.0"
+    tar-stream "^2.1.4"
+
+tar-stream@^2.0.0, tar-stream@^2.1.4:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-2.2.0.tgz#acad84c284136b060dc3faa64474aa9aebd77287"
   integrity sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==
