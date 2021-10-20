@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from "next"
+import { GetServerSideProps } from "next"
 import { renderSiteMap, siteMapUrlType } from "lib/util/sitemap"
 import parseId from "lib/util/notion/parseId"
 import getDatabase from "lib/util/notion/getDatabase"
@@ -9,16 +9,13 @@ const database_id = "b5a4fe321aa443c580b6744b76e46728"
 
 const MAX_AGE = 60 * 60 * 12 // 12 hour
 
-export const getServerSideProps = async ({
-  req,
-  res,
-}: GetServerSidePropsContext) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   if (req.method !== "GET") {
     res.statusCode = 405
     res.setHeader("Content-Type", "application/json")
     res.write(JSON.stringify({ error: "method not allowed" }))
     res.end()
-    return
+    return { props: {} }
   }
 
   try {
@@ -52,7 +49,7 @@ export const getServerSideProps = async ({
     res.write(JSON.stringify({ error: "internal server error" }))
   }
   res.end()
-  return
+  return { props: {} }
 }
 
 const SiteMapXml: React.FC = () => null
