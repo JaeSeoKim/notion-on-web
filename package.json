@@ -1,6 +1,8 @@
 {
   "name": "jaeseokim.dev",
-  "packageManager": "yarn@3.0.2",
+  "description": "blog!",
+  "repository": "https://github.com/JaeSeoKim/jaeseokim.dev.git",
+  "author": "JaeSeoKim <devjaeseo@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
