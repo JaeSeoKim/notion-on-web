@@ -7,6 +7,7 @@ import {
 } from "utility-types"
 import { Client } from "@notionhq/client"
 import getDatabase from "./getDatabase"
+import { OpenGraphType } from "../getOpenGraph"
 
 export declare type GetBlockResponse = PromiseType<
   ReturnType<typeof Client.prototype.blocks.retrieve>
@@ -117,7 +118,14 @@ export declare type BookmarkType = SetIntersection<
 
 export declare type BookmarkBlock = Assign<
   BookmarkType,
-  _OptionalChildrenBlocks
+  {
+    bookmark: Assign<
+      $ElementType<BookmarkType, "bookmark">,
+      {
+        opengraph: OpenGraphType
+      }
+    >
+  }
 >
 
 export declare type BulletedListItemType = SetIntersection<

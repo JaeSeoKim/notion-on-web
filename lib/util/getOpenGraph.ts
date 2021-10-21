@@ -6,7 +6,6 @@ import metascraperDescription from "metascraper-description"
 import metascraperImage from "metascraper-image"
 import metascraperLogo from "metascraper-logo"
 import metascraperLogoFavicon from "metascraper-logo-favicon"
-import { PromiseType } from "utility-types"
 import got from "got"
 
 const metaScraper = metascraper([
@@ -15,8 +14,8 @@ const metaScraper = metascraper([
   metascraperPublisher(),
   metascraperDescription(),
   metascraperImage(),
-  metascraperLogo(),
   metascraperLogoFavicon(),
+  metascraperLogo(),
 ])
 export interface getOpenGraphProps {
   url: string
@@ -29,9 +28,20 @@ const getOpenGraph = async ({ url }: getOpenGraphProps) => {
     url: requestURL,
     html: body,
   })
-  return results
+  /**
+   * metaScraper의 반환 Type이 정확하지 않음.
+   */
+  return results as unknown as OpenGraphType
 }
 
-export type OpenGraphType = PromiseType<ReturnType<typeof getOpenGraph>>
+type OpenGraphKey =
+  | "url"
+  | "title"
+  | "publisher"
+  | "description"
+  | "image"
+  | "logo"
+
+export declare type OpenGraphType = Record<OpenGraphKey, string | null>
 
 export default getOpenGraph

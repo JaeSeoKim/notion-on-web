@@ -11,7 +11,7 @@ const Blocks: React.FC<BlocksProps> = ({ blocks, parentId }) => {
   return (
     <>
       {blocks.map((block, index) => (
-        <Block key={`p${parentId}-c${block.id}`} block={block} index={index} />
+        <Block key={`p${parentId}__c${block.id}`} block={block} index={index} />
       ))}
     </>
   )

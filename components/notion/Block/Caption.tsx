@@ -8,6 +8,10 @@ export interface CaptionProps {
 }
 
 const Caption: React.FC<CaptionProps> = ({ caption, block_id }) => {
+  if (caption.length === 0) {
+    return null
+  }
+
   return (
     <div className={`notion-caption`}>
       <Text rich_texts={caption} block_id={block_id} />

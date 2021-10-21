@@ -1,4 +1,5 @@
 import { notion } from "."
+import getOpenGraph from "../getOpenGraph"
 import getDatabase from "./getDatabase"
 import { Block, GetBlockResponse } from "./types"
 
@@ -34,6 +35,34 @@ const getPage = async (id: string) => {
       } catch (_error) {
         // TODO: linked database 결과 처리 방법 생각 하기
         return block
+      }
+    }
+
+    if (block.type === "bookmark") {
+      try {
+        return {
+          ...block,
+          bookmark: {
+            ...block.bookmark,
+            opengraph: await getOpenGraph({ url: block.bookmark.url }),
+          },
+        }
+      } catch {
+        console.log(`OpenGraph fetch fail : ${block.id}, ${block.bookmark.url}`)
+        return {
+          ...block,
+          bookmark: {
+            ...block.bookmark,
+            opengraph: {
+              url: null,
+              title: null,
+              publisher: null,
+              description: null,
+              image: null,
+              logo: null,
+            },
+          },
+        }
       }
     }
 

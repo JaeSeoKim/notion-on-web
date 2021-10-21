@@ -8,8 +8,12 @@ export interface AudioProps {
 }
 
 const Audio: React.FC<AudioProps> = ({ block }) => {
-  // @ts-ignore
-  const url = block.audio[block.audio.type].url as string
+  const url = (() => {
+    if (block.audio.type === "external") {
+      return block.audio.external.url
+    }
+    return block.audio.file.url
+  })()
 
   return (
     <>
