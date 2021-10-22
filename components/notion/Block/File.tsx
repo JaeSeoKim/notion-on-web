@@ -2,9 +2,8 @@ import React from "react"
 import { FileBlock } from "../../../lib/util/notion/types"
 import Children from "./Children"
 import Caption from "./Caption"
-import useRequest from "../../../lib/util/useRequest"
-import { GetFileSuccessType } from "../../../pages/api/file/[block_id]"
 import FileLinkIcon from "../../icon/FileLinkIcon"
+import useFileSrc from "../../../lib/hooks/useFileSrc"
 
 export interface FileProps {
   block: FileBlock
@@ -15,17 +14,31 @@ const File: React.FC<FileProps> = ({ block }) => {
     const slice_path = uri.split("?")[0].split("/")
 
     const encodeFileName = slice_path[slice_path.length - 1]
-    console.log(encodeFileName)
 
     return encodeFileName === "" ? "File" : decodeURI(encodeFileName)
   }
 
-  const FileContainer: React.FC<{ src?: string; filename: string }> = ({
-    src,
-    filename,
-  }) => {
+  const FileContainer: React.FC<{
+    src?: string
+    filename: string
+  }> = ({ src, filename }) => {
+    const style = (() => {
+      if (!src) {
+        return {
+          cursor: "wait",
+        }
+      }
+      return {}
+    })()
+
     return (
-      <a className={`notion-file`} href={src} target="_blank" rel="noreferrer">
+      <a
+        className={`notion-file`}
+        style={style}
+        href={src}
+        target="_blank"
+        rel="noreferrer"
+      >
         <div className={`notion-file_icon`}>
           <FileLinkIcon />
         </div>
@@ -39,16 +52,8 @@ const File: React.FC<FileProps> = ({ block }) => {
   }
 
   const FileFile = () => {
-    const { data, error } = useRequest<GetFileSuccessType>(
-      {
-        url: `/api/file/${block.id}`,
-      },
-      {
-        revalidateIfStale: false,
-        revalidateOnFocus: false,
-        revalidateOnReconnect: false,
-      }
-    )
+    const { data, error } = useFileSrc(block.id)
+
     if (error) {
       return <FileContainer filename={"Load File Error"} />
     }
@@ -60,7 +65,6 @@ const File: React.FC<FileProps> = ({ block }) => {
     return <FileContainer filename={"Loading..."} />
   }
 
-  console.log(block.file)
   return (
     <>
       {block.file.type === "external" ? (

@@ -12,6 +12,10 @@ import Toggle from "./Toggle"
 import Audio from "./Audio"
 import Bookmark from "./Bookmark"
 import File from "./File"
+import Pdf from "./Pdf"
+import Video from "./Video"
+import Embed from "./Embed"
+import Image from "./Image"
 
 export interface BlockProps {
   block: BlockType
@@ -38,6 +42,19 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "file") {
       return <File block={block} />
     }
+    if (block.type === "pdf") {
+      return <Pdf block={block} />
+    }
+    if (block.type === "video") {
+      return <Video block={block} />
+    }
+    if (block.type === "embed") {
+      return <Embed block={block} />
+    }
+    if (block.type === "image") {
+      // eslint-disable-next-line jsx-a11y/alt-text
+      return <Image block={block} />
+    }
     if (block.type === "bookmark") {
       return <Bookmark block={block} />
     }
@@ -56,7 +73,7 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "child_page") {
       return <ChildPage block={block} />
     }
-    console.log(`Unsupport block : ${block.type}--${block.id}`)
+    console.log(`Unsupport block : ${block.type}__${block.id}`)
     return null
   }
 

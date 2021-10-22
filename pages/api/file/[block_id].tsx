@@ -10,6 +10,8 @@ export type GetFileErrorType = {
   message?: string
 }
 
+const MAX_AGE = 60 /* 60min */ * 60 /* 60sec */
+
 const getController = async (req: NextApiRequest, res: NextApiResponse) => {
   const { block_id } = req.query as {
     block_id: string
@@ -18,6 +20,10 @@ const getController = async (req: NextApiRequest, res: NextApiResponse) => {
     const fileSrc = await getFileSrc(block_id)
 
     if (fileSrc) {
+      res.setHeader(
+        "Cache-Control",
+        `public, s-maxage=${MAX_AGE}, max-age=${MAX_AGE}, stale-while-revalidate=${MAX_AGE}`
+      )
       res.status(200).json({
         src: fileSrc,
       })
@@ -38,7 +44,7 @@ const getController = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-const constroller = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
       return getController(req, res)
@@ -49,4 +55,4 @@ const constroller = async (req: NextApiRequest, res: NextApiResponse) => {
   })
 }
 
-export default constroller
+export default handler

@@ -21,7 +21,12 @@ const indexPage = ({
   return (
     <>
       <article
-        className={classNames(["notion", "mx-auto", "max-w-3xl", "w-full"])}
+        className={classNames([
+          "notion-page",
+          "mx-auto",
+          "max-w-screen-md",
+          "w-full",
+        ])}
       >
         <Blocks parentId={page.id} blocks={blocks} />
       </article>

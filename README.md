@@ -21,24 +21,29 @@
   - [x] page api end-point [`/api/page/[page_id]`](https://jaeseokim-dev.vercel.app/api/page/13cb8d2d3328425e815a1896267f5906) -> **임시 테스트용 API 추후 deprecated**
 - [ ] 기본적인 Block Component 작성하기
   - [x] paragraph
-  - [x] heading_1
-  - [x] heading_2
-  - [x] heading_3
+  - [x] heading
+    - [x] heading_1
+    - [x] heading_2
+    - [x] heading_3
+    - [x] id 및 anchor 추가
   - [x] audio
   - [x] bookmark
     - [x] ~~OpenGraph-CORS API 만들기 `/api/bookmark/[encodeURI]`~~ Server Side에서 fetch하여 렌더링 하도록 수정
   - [x] file
-  - [ ] pdf
-    - [ ] react-pdf 사용시 Nextjs에서 Component를 어떻게 전달할지 정의 필요
-  - [ ] video
+  - [x] pdf
+    - [x] ~~react-pdf 사용시 Nextjs에서 Component를 어떻게 전달할지 정의 필요~~ react-pdf 사용 안함. file 다운으로 치환
+  - [x] video
+    - [x] youtube embed - react-youtube
+    - [x] viemo embed - react-viemo
+    - [ ] Error시 화면 구상 필요
+  - [x] embed
+  - [x] image
   - [ ] bulleted_list_item
   - [ ] callout
   - [ ] child_database
   - [ ] child_page
   - [ ] code
-  - [ ] embed
   - [ ] equation
-  - [ ] image
   - [ ] numbered_list_item
   - [ ] to_do
   - [ ] toggle

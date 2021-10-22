@@ -20,7 +20,7 @@ const getController = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-const constroller = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
       return getController(req, res)
@@ -31,4 +31,4 @@ const constroller = async (req: NextApiRequest, res: NextApiResponse) => {
   })
 }
 
-export default constroller
+export default handler

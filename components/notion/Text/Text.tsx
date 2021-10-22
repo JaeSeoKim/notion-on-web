@@ -8,8 +8,17 @@ export interface TextProps {
 }
 
 const Text: React.FC<TextProps> = ({ rich_texts, block_id }) => {
+  const style = (() => {
+    if (rich_texts.length === 0) {
+      return {
+        minHeight: "30px",
+      }
+    }
+    return {}
+  })()
+
   return (
-    <div className={`notion-text`}>
+    <div className={`notion-text`} style={style}>
       {rich_texts.map((t, index) => (
         <RichText
           key={`${block_id}-t-${JSON.stringify(t)}-${index}`}
