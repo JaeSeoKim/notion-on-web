@@ -15,8 +15,9 @@ const File: React.FC<FileProps> = ({ block }) => {
     const slice_path = uri.split("?")[0].split("/")
 
     const encodeFileName = slice_path[slice_path.length - 1]
+    console.log(encodeFileName)
 
-    return encodeFileName === "" ? decodeURI(encodeFileName) : "file"
+    return encodeFileName === "" ? "File" : decodeURI(encodeFileName)
   }
 
   const FileContainer: React.FC<{ src?: string; filename: string }> = ({
@@ -49,14 +50,14 @@ const File: React.FC<FileProps> = ({ block }) => {
       }
     )
     if (error) {
-      return <FileContainer filename={"load file error"} />
+      return <FileContainer filename={"Load File Error"} />
     }
 
     if (data) {
       return <FileContainer src={data.src} filename={getFileName(data.src)} />
     }
 
-    return <FileContainer filename={"loading..."} />
+    return <FileContainer filename={"Loading..."} />
   }
 
   console.log(block.file)
