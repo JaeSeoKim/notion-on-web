@@ -14,9 +14,9 @@ const File: React.FC<FileProps> = ({ block }) => {
   const getFileName = (uri: string) => {
     const slice_path = uri.split("?")[0].split("/")
 
-    const encodeFileName = slice_path.at(slice_path.length - 1)
+    const encodeFileName = slice_path[slice_path.length - 1]
 
-    return encodeFileName ? decodeURI(encodeFileName) : "file"
+    return encodeFileName === "" ? decodeURI(encodeFileName) : "file"
   }
 
   const FileContainer: React.FC<{ src?: string; filename: string }> = ({
@@ -24,7 +24,7 @@ const File: React.FC<FileProps> = ({ block }) => {
     filename,
   }) => {
     return (
-      <a className={`notion-file`} href={src}>
+      <a className={`notion-file`} href={src} target="_blank" rel="noreferrer">
         <div className={`notion-file_icon`}>
           <FileLinkIcon />
         </div>

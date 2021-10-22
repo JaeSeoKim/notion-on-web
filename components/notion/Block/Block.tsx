@@ -61,7 +61,7 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
   }
 
   return (
-    <div block-id={block.id} className={`notion-block`}>
+    <div data-block-id={block.id} className={`notion-block`}>
       <SwitchBlock block={block} index={index} />
     </div>
   )
