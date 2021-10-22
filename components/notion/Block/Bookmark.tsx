@@ -16,28 +16,32 @@ const Bookmark: React.FC<BookmarkProps> = ({ block }) => {
 
     return (
       <>
-        <div>
-          <div>
+        <div className={`notion-bookmark_info`}>
+          <div className={`notion-bookmark_title`}>
             {opengraph.title
               ? opengraph.title
               : getHostname(block.bookmark.url)}
           </div>
-          {opengraph.description ? (
-            <div>{opengraph.description}</div>
-          ) : (
-            <div style={{ display: "none" }}></div>
+          {opengraph.description && (
+            <div className={`notion-bookmark_description`}>
+              {opengraph.description}
+            </div>
           )}
-          <div>
-            {opengraph.logo ? (
-              <img src={opengraph.logo} alt={`${opengraph.url} logo`} />
-            ) : (
-              <div style={{ display: "none" }}></div>
+          <div className={`notion-bookmark_target`}>
+            {opengraph.logo && (
+              <img
+                className={`notion-bookmark_target_pavicon`}
+                src={opengraph.logo}
+                alt={`${opengraph.url} logo`}
+              />
             )}
-            <div>{opengraph.url ? opengraph.url : block.bookmark.url}</div>
+            <div className={`notion-bookmark_target_url`}>
+              {opengraph.url ? opengraph.url : block.bookmark.url}
+            </div>
           </div>
         </div>
-        {opengraph.image ? (
-          <div>
+        {opengraph.image && (
+          <div className={`notion-bookmark_image`}>
             <div style={{ position: "absolute", inset: "0px" }}>
               <img
                 src={opengraph.image}
@@ -51,8 +55,6 @@ const Bookmark: React.FC<BookmarkProps> = ({ block }) => {
               />
             </div>
           </div>
-        ) : (
-          <div style={{ display: "none" }}></div>
         )}
       </>
     )

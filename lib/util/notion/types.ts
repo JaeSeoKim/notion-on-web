@@ -27,6 +27,8 @@ type _block_types = $ElementType<GetBlockResponse, "type">
  * embed
  * equation
  * file
+ * pdf
+ * video
  * heading_1
  * heading_2
  * heading_3
@@ -83,6 +85,8 @@ export declare type Block =
   | EmbedBlock
   | EquationBlock
   | FileBlock
+  | PdfBlock
+  | VideoBlock
   | Heading1Block
   | Heading2Block
   | Heading3Block
@@ -220,6 +224,24 @@ export declare type FileType = SetIntersection<
 >
 
 export declare type FileBlock = Assign<FileType, _OptionalChildrenBlocks>
+
+export declare type PdfType = SetIntersection<
+  GetBlockResponse,
+  {
+    type: "pdf"
+  }
+>
+
+export declare type PdfBlock = Assign<PdfType, _OptionalChildrenBlocks>
+
+export declare type VideoType = SetIntersection<
+  GetBlockResponse,
+  {
+    type: "video"
+  }
+>
+
+export declare type VideoBlock = Assign<VideoType, _OptionalChildrenBlocks>
 
 export declare type Heading1Type = SetIntersection<
   GetBlockResponse,

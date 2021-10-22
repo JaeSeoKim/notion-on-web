@@ -18,7 +18,7 @@
 
 - [X] @notionhq/client 사용 방법 분석하기
 - [x] page에 대한 모든 정보를 가져오는 함수 개발 하기 + 해당 Type 정의 하기
-  - [x] page api end-point [`/page/[page_id]`](https://jaeseokim-dev.vercel.app/api/page/13cb8d2d3328425e815a1896267f5906) -> **임시 테스트용 API 추후 deprecated**
+  - [x] page api end-point [`/api/page/[page_id]`](https://jaeseokim-dev.vercel.app/api/page/13cb8d2d3328425e815a1896267f5906) -> **임시 테스트용 API 추후 deprecated**
 - [ ] 기본적인 Block Component 작성하기
   - [x] paragraph
   - [x] heading_1
@@ -26,7 +26,11 @@
   - [x] heading_3
   - [x] audio
   - [x] bookmark
-    - [x] ~~OpenGraph-CORS API 만들기 `/bookmark/[encodeURI]`~~ Server Side에서 fetch하여 렌더링 하도록 수정
+    - [x] ~~OpenGraph-CORS API 만들기 `/api/bookmark/[encodeURI]`~~ Server Side에서 fetch하여 렌더링 하도록 수정
+  - [x] file
+  - [ ] pdf
+    - [ ] react-pdf 사용시 Nextjs에서 Component를 어떻게 전달할지 정의 필요
+  - [ ] video
   - [ ] bulleted_list_item
   - [ ] callout
   - [ ] child_database
@@ -34,7 +38,6 @@
   - [ ] code
   - [ ] embed
   - [ ] equation
-  - [ ] file
   - [ ] image
   - [ ] numbered_list_item
   - [ ] to_do
@@ -42,3 +45,7 @@
   - [ ] table_of_contents
   - [ ] divider
   - [ ] breadcrumb
+- [x] Notion-S3 File 접근 제한 시간 이슈 해결
+  - [Next.js의 증분빌드](https://vercel.com/docs/concepts/next.js/incremental-static-regeneration)를 사용하게 될 경우 1시간 동안 접근 가능한 URL를 반환 즉 revaildate 시간이 1시간 보다 긴 경우 제대로 작동 하지 않는 이슈와 이전 캐시를 이용하여 응답한 경우 파일에 대해서 접근 불가능한 이슈가 있음.
+  - 추가 API 제작 및 `swr` 를 이용하여 Client 단에서 src를 fetch 하여 사용하도록 수정
+  - [`/api/file/[block_id]`](https://jaeseokim-dev.vercel.app/api/file/ac17cd1f-0332-47fc-ab96-636965b5d41d)

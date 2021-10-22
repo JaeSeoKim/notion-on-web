@@ -11,6 +11,7 @@ import ToDo from "./ToDo"
 import Toggle from "./Toggle"
 import Audio from "./Audio"
 import Bookmark from "./Bookmark"
+import File from "./File"
 
 export interface BlockProps {
   block: BlockType
@@ -33,6 +34,9 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     }
     if (block.type === "audio") {
       return <Audio block={block} />
+    }
+    if (block.type === "file") {
+      return <File block={block} />
     }
     if (block.type === "bookmark") {
       return <Bookmark block={block} />
