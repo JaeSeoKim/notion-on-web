@@ -1,3 +1,4 @@
+import { getPlaiceholder } from "plaiceholder"
 import { notion } from "."
 import getOpenGraph from "../getOpenGraph"
 import getDatabase from "./getDatabase"
@@ -11,6 +12,22 @@ const getPage = async (id: string) => {
   }
 
   const getRecursiveChildren = async (block: GetBlockResponse) => {
+    if (block.type === "image" && block.image.type === "file") {
+      const { base64 } = await getPlaiceholder(block.image.file.url, {
+        size: 10,
+      })
+      return {
+        ...block,
+        image: {
+          ...block.image,
+          file: {
+            ...block.image.file,
+            blurDataURL: base64,
+          },
+        },
+      }
+    }
+
     if (block.type === "child_page") {
       return {
         ...block,

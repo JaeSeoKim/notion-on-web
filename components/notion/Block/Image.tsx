@@ -33,6 +33,8 @@ const Image: React.FC<ImageProps> = ({ block }) => {
             className={`notion-image_next`}
             src={block.image.file.url}
             alt={getImageName(block.image.file.url)}
+            blurDataURL={block.image.file.blurDataURL}
+            placeholder="blur"
             layout={"fill"}
           />
         </div>

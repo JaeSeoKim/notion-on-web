@@ -286,7 +286,26 @@ export declare type ImageType = SetIntersection<
   }
 >
 
-export declare type ImageBlock = Assign<ImageType, _OptionalChildrenBlocks>
+export declare type ImageBlock = Assign<
+  ImageType,
+  {
+    image:
+      | SetIntersection<
+          $ElementType<ImageType, "image">,
+          {
+            type: "external"
+          }
+        >
+      | (SetIntersection<
+          $ElementType<ImageType, "image">,
+          {
+            type: "file"
+          }
+        > & {
+          file: { blurDataURL: string }
+        })
+  }
+>
 
 export declare type NumberedListItemType = SetIntersection<
   GetBlockResponse,
