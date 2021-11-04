@@ -21,24 +21,12 @@ const Audio: React.FC<AudioProps> = ({ block }) => {
   }
 
   const FileAudio = () => {
-    const { data } = useFileSrc(block.id)
-
-    const style = (() => {
-      if (!data) {
-        return {
-          cursor: "wait",
-        }
-      }
-      return {}
-    })()
-
     return (
       <audio
         className={`notion-audio`}
-        style={style}
-        controls
         preload={`metadata`}
-        src={data ? data.src : undefined}
+        controls
+        src={`/api/file/${block.id}`}
       ></audio>
     )
   }

@@ -19,6 +19,7 @@ import Image from "./Image"
 import ColumnList from "./ColumnList"
 import { BlocksContext } from "./Blocks"
 import Column from "./Column"
+import Callout from "./Callout"
 
 export interface BlockProps {
   block: BlockType
@@ -75,6 +76,9 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     }
     if (block.type === "numbered_list_item") {
       return <NumberedListItem block={block} />
+    }
+    if (block.type === "callout") {
+      return <Callout block={block} />
     }
     if (block.type === "to_do") {
       return <ToDo block={block} />

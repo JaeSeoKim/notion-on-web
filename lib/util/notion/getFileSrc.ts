@@ -14,6 +14,9 @@ const getFileSrc = async (block_id: string) => {
     block_id: block_id,
   })
 
+  if (block.type === "image") {
+    return findFileSrc(block.image)
+  }
   if (block.type === "audio") {
     return findFileSrc(block.audio)
   }

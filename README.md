@@ -57,3 +57,4 @@
   - [Next.js의 증분빌드](https://vercel.com/docs/concepts/next.js/incremental-static-regeneration)를 사용하게 될 경우 1시간 동안 접근 가능한 URL를 반환 즉 revaildate 시간이 1시간 보다 긴 경우 제대로 작동 하지 않는 이슈와 이전 캐시를 이용하여 응답한 경우 파일에 대해서 접근 불가능한 이슈가 있음.
   - 추가 API 제작 및 `swr` 를 이용하여 Client 단에서 src를 fetch 하여 사용하도록 수정
   - [`/api/file/[block_id]`](https://jaeseokim-dev.vercel.app/api/file/ac17cd1f-0332-47fc-ab96-636965b5d41d)
+    - file의 src를 전달하는 것이 아닌 해당 body의 stream 전달하는 proxy로 변경!
