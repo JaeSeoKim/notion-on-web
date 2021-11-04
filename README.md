@@ -40,9 +40,9 @@
   - [x] image
   - [x] column
   - [x] column_list
-  - [x] bulleted_list_item
+  - [x] bulleted_list
     - closure + context api를 이용하여 해결
-  - [x] numbered_list_item
+  - [x] numbered_list
   - [ ] callout
   - [ ] child_database
   - [ ] child_page
