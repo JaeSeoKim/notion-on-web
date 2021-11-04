@@ -1,6 +1,5 @@
 import React from "react"
 import { FileBlock } from "../../../lib/util/notion/types"
-import Children from "./Children"
 import Caption from "./Caption"
 import FileLinkIcon from "../../icon/FileLinkIcon"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
@@ -73,9 +72,6 @@ const File: React.FC<FileProps> = ({ block }) => {
         <FileFile />
       )}
       <Caption caption={block.file.caption} block_id={block.id} />
-      {block.children && (
-        <Children blocks={block.children} parentId={block.id} />
-      )}
     </>
   )
 }

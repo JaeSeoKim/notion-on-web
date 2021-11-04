@@ -100,7 +100,6 @@ const getPage = async (id: string) => {
         page_size: 100,
         start_cursor: cursor,
       })
-
     if (!has_more || !next_cursor) {
       return (await Promise.all(
         results.map((block) => getRecursiveChildren(block))

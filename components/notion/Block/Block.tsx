@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { Block as BlockType } from "lib/util/notion/types"
 import BulletedListItem from "./BulletedListItem"
 import ChildPage from "./ChildPage"
@@ -16,6 +16,9 @@ import Pdf from "./Pdf"
 import Video from "./Video"
 import Embed from "./Embed"
 import Image from "./Image"
+import ColumnList from "./ColumnList"
+import { BlocksContext } from "./Blocks"
+import Column from "./Column"
 
 export interface BlockProps {
   block: BlockType
@@ -23,6 +26,9 @@ export interface BlockProps {
 }
 
 const Block: React.FC<BlockProps> = ({ block, index }) => {
+  const { checkBlockType } = useContext(BlocksContext)
+  checkBlockType(block.type)
+
   const SwitchBlock: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "paragraph") {
       return <Paragraph block={block} />
@@ -57,6 +63,12 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     }
     if (block.type === "bookmark") {
       return <Bookmark block={block} />
+    }
+    if (block.type === "column") {
+      return <Column block={block} />
+    }
+    if (block.type === "column_list") {
+      return <ColumnList block={block} />
     }
     if (block.type === "bulleted_list_item") {
       return <BulletedListItem block={block} />

@@ -24,16 +24,13 @@ const Heading1: React.FC<Heading1Props> = ({ block, index }) => {
   return (
     <>
       <h1 className={cs(["notion-heading_1"])} style={style} id={block.id}>
+        <Text rich_texts={block.heading_1.text} block_id={block.id} />
         <Link href={`#${block.id}`}>
           <a className={`notion-anchor`}>
             <FileLinkIcon />
           </a>
         </Link>
-        <Text rich_texts={block.heading_1.text} block_id={block.id} />
       </h1>
-      {block.children && (
-        <Children parentId={block.id} blocks={block.children} />
-      )}
     </>
   )
 }

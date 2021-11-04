@@ -37,13 +37,11 @@ type _block_types = $ElementType<GetBlockResponse, "type">
  * paragraph
  * to_do
  * toggle
- *
- * @etc 2021-10-19 기준 Change Log에 반영됨
- * @see https://developers.notion.com/changelog/table-of-contents-and-divider-block-types-are-now-supported
- * @see https://developers.notion.com/changelog/breadcrumb-block-types-are-now-supported-in-the-api
  * table_of_contents
  * divider
  * breadcrumb
+ * column_list
+ * column
  */
 
 export declare type GetPageResponse = PromiseType<
@@ -99,6 +97,8 @@ export declare type Block =
   | DividerBlock
   | BreadcrumbBlock
   | UnsupportedBlock
+  | ColumnBlock
+  | ColumnListBlock
 
 type _OptionalChildrenBlocks = {
   children?: Block[]
@@ -111,7 +111,7 @@ export declare type AudioType = SetIntersection<
   }
 >
 
-export declare type AudioBlock = Assign<AudioType, _OptionalChildrenBlocks>
+export declare type AudioBlock = AudioType
 
 export declare type BookmarkType = SetIntersection<
   GetBlockResponse,
@@ -151,7 +151,7 @@ export declare type CalloutType = SetIntersection<
   }
 >
 
-export declare type CalloutBlock = Assign<CalloutType, _OptionalChildrenBlocks>
+export declare type CalloutBlock = CalloutType
 
 export declare type ChildDatabaseType = SetIntersection<
   GetBlockResponse,
@@ -193,7 +193,7 @@ export declare type CodeType = SetIntersection<
   }
 >
 
-export declare type CodeBlock = Assign<CodeType, _OptionalChildrenBlocks>
+export declare type CodeBlock = CodeType
 
 export declare type EmbedType = SetIntersection<
   GetBlockResponse,
@@ -202,7 +202,7 @@ export declare type EmbedType = SetIntersection<
   }
 >
 
-export declare type EmbedBlock = Assign<EmbedType, _OptionalChildrenBlocks>
+export declare type EmbedBlock = EmbedType
 
 export declare type EquationType = SetIntersection<
   GetBlockResponse,
@@ -211,10 +211,7 @@ export declare type EquationType = SetIntersection<
   }
 >
 
-export declare type EquationBlock = Assign<
-  EquationType,
-  _OptionalChildrenBlocks
->
+export declare type EquationBlock = EquationType
 
 export declare type FileType = SetIntersection<
   GetBlockResponse,
@@ -223,7 +220,7 @@ export declare type FileType = SetIntersection<
   }
 >
 
-export declare type FileBlock = Assign<FileType, _OptionalChildrenBlocks>
+export declare type FileBlock = FileType
 
 export declare type PdfType = SetIntersection<
   GetBlockResponse,
@@ -232,7 +229,7 @@ export declare type PdfType = SetIntersection<
   }
 >
 
-export declare type PdfBlock = Assign<PdfType, _OptionalChildrenBlocks>
+export declare type PdfBlock = PdfType
 
 export declare type VideoType = SetIntersection<
   GetBlockResponse,
@@ -241,7 +238,7 @@ export declare type VideoType = SetIntersection<
   }
 >
 
-export declare type VideoBlock = Assign<VideoType, _OptionalChildrenBlocks>
+export declare type VideoBlock = VideoType
 
 export declare type Heading1Type = SetIntersection<
   GetBlockResponse,
@@ -250,10 +247,7 @@ export declare type Heading1Type = SetIntersection<
   }
 >
 
-export declare type Heading1Block = Assign<
-  Heading1Type,
-  _OptionalChildrenBlocks
->
+export declare type Heading1Block = Heading1Type
 
 export declare type Heading2Type = SetIntersection<
   GetBlockResponse,
@@ -262,10 +256,7 @@ export declare type Heading2Type = SetIntersection<
   }
 >
 
-export declare type Heading2Block = Assign<
-  Heading2Type,
-  _OptionalChildrenBlocks
->
+export declare type Heading2Block = Heading2Type
 
 export declare type Heading3Type = SetIntersection<
   GetBlockResponse,
@@ -274,10 +265,7 @@ export declare type Heading3Type = SetIntersection<
   }
 >
 
-export declare type Heading3Block = Assign<
-  Heading3Type,
-  _OptionalChildrenBlocks
->
+export declare type Heading3Block = Heading3Type
 
 export declare type ImageType = SetIntersection<
   GetBlockResponse,
@@ -361,48 +349,42 @@ export declare type UnsupportedBlock = Assign<
   _OptionalChildrenBlocks
 >
 
-/*
- TODO: 해당 타입이 아직 미지원 간단한 프로토 타이핑으로 대체
-
- export declare type TableOfContentsType = SetIntersection<
- GetBlockResponse,
- { type: "table_of_contents" }
- >
- export declare type TableOfContentsBlock = TableOfContentsType
-
- export declare type DividerType = SetIntersection<
- GetBlockResponse,
- { type: "divider" }
- >
- export declare type DividerBlock = DividerType
-
- export declare type BreadcrumbType = SetIntersection<
- GetBlockResponse,
- { type: "breadcrumb" }
- >
- export declare type BreadcrumbBlock = BreadcrumbType
- */
-
-export declare type TableOfContentsType = Assign<
-  UnsupportedType,
-  { type: "table_of_contents"; table_of_contents: Object }
+export declare type TableOfContentsType = SetIntersection<
+  GetBlockResponse,
+  { type: "table_of_contents" }
 >
-export declare type TableOfContentsBlock = Assign<
-  TableOfContentsType,
-  _OptionalChildrenBlocks
->
+export declare type TableOfContentsBlock = TableOfContentsType
 
-export declare type DividerType = Assign<
-  UnsupportedType,
-  { type: "divider"; divider: Object }
+export declare type DividerType = SetIntersection<
+  GetBlockResponse,
+  { type: "divider" }
 >
-export declare type DividerBlock = Assign<DividerType, _OptionalChildrenBlocks>
+export declare type DividerBlock = DividerType
 
 export declare type BreadcrumbType = SetIntersection<
-  UnsupportedType,
-  { type: "breadcrumb"; breadcrumb: Object }
+  GetBlockResponse,
+  { type: "breadcrumb" }
 >
-export declare type BreadcrumbBlock = Assign<
-  BreadcrumbType,
-  _OptionalChildrenBlocks
+export declare type BreadcrumbBlock = BreadcrumbType
+
+export declare type ColumnType = SetIntersection<
+  GetBlockResponse,
+  { type: "column" }
+>
+export declare type ColumnBlock = Assign<
+  ColumnType,
+  {
+    children: Block[]
+  }
+>
+
+export declare type ColumnListType = SetIntersection<
+  GetBlockResponse,
+  { type: "column_list" }
+>
+export declare type ColumnListBlock = Assign<
+  ColumnListType,
+  {
+    children: ColumnBlock[]
+  }
 >

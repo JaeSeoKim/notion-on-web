@@ -10,7 +10,7 @@ export const getStaticProps = async (_ctx: GetStaticPropsContext) => {
       page: info,
       blocks: data,
     },
-    revalidate: 64,
+    revalidate: 24 * 60 * 64 /* 1 hour */,
   }
 }
 

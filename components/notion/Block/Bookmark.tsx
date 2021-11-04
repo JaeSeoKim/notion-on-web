@@ -2,6 +2,7 @@
 import React from "react"
 import { BookmarkBlock } from "lib/util/notion/types"
 import Caption from "./Caption"
+
 export interface BookmarkProps {
   block: BookmarkBlock
 }

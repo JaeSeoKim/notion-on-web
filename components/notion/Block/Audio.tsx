@@ -2,8 +2,6 @@ import React from "react"
 import { AudioBlock } from "lib/util/notion/types"
 import Children from "./Children"
 import Caption from "./Caption"
-import useRequest from "lib/hooks/useRequest"
-import { GetFileSuccessType } from "pages/api/file/[block_id]"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
 
 export interface AudioProps {
@@ -14,7 +12,7 @@ const Audio: React.FC<AudioProps> = ({ block }) => {
   const ExternalAudio: React.FC<{ src: string }> = ({ src }) => {
     return (
       <audio
-        preload={"none"}
+        preload={"metadata"}
         className={`notion-audio`}
         controls
         src={src}
@@ -39,6 +37,7 @@ const Audio: React.FC<AudioProps> = ({ block }) => {
         className={`notion-audio`}
         style={style}
         controls
+        preload={`metadata`}
         src={data ? data.src : undefined}
       ></audio>
     )
@@ -52,9 +51,6 @@ const Audio: React.FC<AudioProps> = ({ block }) => {
         <FileAudio />
       )}
       <Caption caption={block.audio.caption} block_id={block.id} />
-      {block.children && (
-        <Children blocks={block.children} parentId={block.id} />
-      )}
     </>
   )
 }

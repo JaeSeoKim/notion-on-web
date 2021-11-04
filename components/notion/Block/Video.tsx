@@ -1,6 +1,5 @@
 import React from "react"
 import { VideoBlock } from "../../../lib/util/notion/types"
-import Children from "./Children"
 import Caption from "./Caption"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
 import urlParser from "js-video-url-parser/lib/base"
@@ -30,6 +29,7 @@ const Video: React.FC<VideoProps> = ({ block }) => {
     return (
       <video
         className={`notion-video`}
+        preload={`metadata`}
         style={style}
         src={src}
         controls
@@ -37,7 +37,7 @@ const Video: React.FC<VideoProps> = ({ block }) => {
     )
   }
 
-  const ExternalPdf: React.FC<{ src: string }> = ({ src }) => {
+  const ExternalVideo: React.FC<{ src: string }> = ({ src }) => {
     const info = urlParser.parse(src)
     if (info?.provider === "youtube") {
       return (
@@ -50,10 +50,7 @@ const Video: React.FC<VideoProps> = ({ block }) => {
     }
     if (info?.provider === "vimeo") {
       return (
-        <Vimeo
-          video={info.id}
-          className={`notion-video notion-video_vimeo`}
-        />
+        <Vimeo video={info.id} className={`notion-video notion-video_vimeo`} />
       )
     }
 
@@ -72,14 +69,11 @@ const Video: React.FC<VideoProps> = ({ block }) => {
   return (
     <>
       {block.video.type === "external" ? (
-        <ExternalPdf src={block.video.external.url} />
+        <ExternalVideo src={block.video.external.url} />
       ) : (
         <VideoFile />
       )}
       <Caption caption={block.video.caption} block_id={block.id} />
-      {block.children && (
-        <Children blocks={block.children} parentId={block.id} />
-      )}
     </>
   )
 }

@@ -3,10 +3,10 @@ import { $ElementType } from "utility-types"
 import { notion } from "."
 
 const findFileSrc = (file: $ElementType<AudioType, "audio">) => {
-  if (file.type === "file") {
-    return file.file.url
+  if (file.type === "external") {
+    return { url: file.external.url }
   }
-  return file.external.url
+  return { url: file.file.url, expiry_time: file.file.expiry_time }
 }
 
 const getFileSrc = async (block_id: string) => {

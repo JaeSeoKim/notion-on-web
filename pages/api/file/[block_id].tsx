@@ -10,22 +10,26 @@ export type GetFileErrorType = {
   message?: string
 }
 
-const MAX_AGE = 60 /* 60min */ * 60 /* 60sec */
-
 const getController = async (req: NextApiRequest, res: NextApiResponse) => {
   const { block_id } = req.query as {
     block_id: string
   }
   try {
-    const fileSrc = await getFileSrc(block_id)
+    const file = await getFileSrc(block_id)
 
-    if (fileSrc) {
+    if (file) {
+      const { url, expiry_time } = file
+
+      const MAX_AGE = expiry_time
+        ? parseInt(((Date.parse(expiry_time) - Date.now()) / 1000).toFixed())
+        : 60 /* 60min */ * 60 /* 60sec */
+
       res.setHeader(
         "Cache-Control",
         `public, s-maxage=${MAX_AGE}, max-age=${MAX_AGE}, stale-while-revalidate=${MAX_AGE}`
       )
       res.status(200).json({
-        src: fileSrc,
+        src: url,
       })
     } else {
       res.status(400).json({

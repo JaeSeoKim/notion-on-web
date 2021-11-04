@@ -36,6 +36,6 @@ module.exports = {
     dangerouslyAllowAllDomains: true,
   },
   experimental: {
-    staticPageGenerationTimeout: 60,
+    swcMinify: true,
   },
 }

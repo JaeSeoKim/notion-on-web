@@ -38,13 +38,16 @@
     - [ ] Error시 화면 구상 필요
   - [x] embed
   - [x] image
-  - [ ] bulleted_list_item
+  - [x] column
+  - [x] column_list
+  - [x] bulleted_list_item
+    - closure + context api를 이용하여 해결
+  - [x] numbered_list_item
   - [ ] callout
   - [ ] child_database
   - [ ] child_page
   - [ ] code
   - [ ] equation
-  - [ ] numbered_list_item
   - [ ] to_do
   - [ ] toggle
   - [ ] table_of_contents
