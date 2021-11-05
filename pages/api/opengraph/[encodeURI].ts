@@ -18,7 +18,7 @@ const getController = async (req: NextApiRequest, res: NextApiResponse) => {
     )
     res.status(200).json(results)
   } catch (error) {
-    console.log("OpenGraph fetch fail : ", encodeURI)
+    console.log("OpenGraph fetch fail :", encodeURI)
 
     res.status(504).json({ error: "internal server error" })
   }

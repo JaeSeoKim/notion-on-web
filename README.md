@@ -29,6 +29,7 @@
   - [x] audio
   - [x] bookmark
     - [x] OpenGraph-CORS API 만들기 `/api/opengraph/[encodeURI]` ~~Server Side에서 fetch하여 렌더링 하도록 수정~~ API로 다시 꺼내어 사용 (Build 시간 단축)
+    - [x] next 12 -> next 11 복귀 re2 라이브러리 미지원
   - [x] file
   - [x] pdf
     - [x] ~~react-pdf 사용시 Nextjs에서 Component를 어떻게 전달할지 정의 필요~~ react-pdf 사용 안함. file 다운으로 치환
