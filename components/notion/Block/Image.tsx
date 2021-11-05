@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react"
 import { ImageBlock } from "../../../lib/util/notion/types"
 import Caption from "./Caption"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
-import "react-medium-image-zoom/dist/styles.css"
 import mediumZoom from "medium-zoom"
 
 export interface ImageProps {
