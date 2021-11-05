@@ -2,9 +2,12 @@ import {
   GetFileErrorType,
   GetFileSuccessType,
 } from "../../pages/api/file/[block_id]"
-import useRequest from "./useRequest"
+import useRequest, { Config } from "./useRequest"
 
-const useFileSrc = (block_id: string) => {
+const useFileSrc = (
+  block_id: string,
+  option?: Config<GetFileSuccessType, GetFileErrorType>
+) => {
   const { data, error } = useRequest<GetFileSuccessType, GetFileErrorType>(
     {
       url: `/api/file/${block_id}`,
@@ -14,8 +17,9 @@ const useFileSrc = (block_id: string) => {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
       errorRetryCount: 3,
-      // focusThrottleInterval: 1Hour
-      focusThrottleInterval: 60 * 60 * 60 * 1000,
+      // dedupingInterval: 1Hour
+      dedupingInterval: 60 * 60 * 60,
+      ...option,
     }
   )
   return {

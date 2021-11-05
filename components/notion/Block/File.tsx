@@ -50,7 +50,7 @@ const File: React.FC<FileProps> = ({ block }) => {
     return <FileContainer src={src} filename={getFileName(src)} />
   }
 
-  const FileFile = () => {
+  const NotionFile = () => {
     const { data, error } = useFileSrc(block.id)
 
     if (error) {
@@ -69,7 +69,7 @@ const File: React.FC<FileProps> = ({ block }) => {
       {block.file.type === "external" ? (
         <ExternalFile src={block.file.external.url} />
       ) : (
-        <FileFile />
+        <NotionFile />
       )}
       <Caption caption={block.file.caption} block_id={block.id} />
     </>

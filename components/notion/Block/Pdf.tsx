@@ -50,7 +50,7 @@ const Pdf: React.FC<PdfProps> = ({ block }) => {
     return <PdfContainer src={src} Pdfname={getPdfName(src)} />
   }
 
-  const PdfFile = () => {
+  const NotionPdf = () => {
     const { data, error } = useFileSrc(block.id)
     if (error) {
       return <PdfContainer Pdfname={"Load File Error"} />
@@ -68,7 +68,7 @@ const Pdf: React.FC<PdfProps> = ({ block }) => {
       {block.pdf.type === "external" ? (
         <ExternalPdf src={block.pdf.external.url} />
       ) : (
-        <PdfFile />
+        <NotionPdf />
       )}
       <Caption caption={block.pdf.caption} block_id={block.id} />
     </>

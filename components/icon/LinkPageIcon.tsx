@@ -4,7 +4,8 @@ const LinkPageIcon = () => (
   <span
     style={{
       whiteSpace: "nowrap",
-      width: "1.1em",
+      width: "17px",
+      height: "1ypx",
       display: "inline-block",
       verticalAlign: "-0.15em",
       position: "relative",
@@ -15,9 +16,6 @@ const LinkPageIcon = () => (
       style={{
         width: "100%",
         height: "100%",
-        display: "block",
-        fill: "inherit",
-        flexShrink: 0,
       }}
     />
   </span>

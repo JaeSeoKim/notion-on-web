@@ -4,7 +4,8 @@ const FileLinkIcon = () => (
   <span
     style={{
       whiteSpace: "nowrap",
-      width: "1.2em",
+      width: "24px",
+      height: "24px",
       display: "inline-block",
       verticalAlign: "middle",
       position: "relative",

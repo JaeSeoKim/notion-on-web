@@ -176,18 +176,6 @@
 
 .notion-image {
   width: 100%;
-
-  /* for next/image */
-  & > span {
-    position: unset !important;
-  }
-
-  .notion-image-next {
-    object-fit: contain;
-    width: 100% !important;
-    position: relative !important;
-    height: unset !important;
-  }
 }
 
 .notion-bookmark {
@@ -296,6 +284,10 @@
   flex: 1 1 0px;
   display: flex;
   flex-direction: column;
+
+  .notion-text {
+    min-height: 30px;
+  }
 }
 
 .notion-bulleted_list-index,
@@ -316,6 +308,48 @@
   font-family: "Arial";
 }
 
+.notion-callout {
+  display: flex;
+}
+
+.notion-callout_content {
+  display: flex;
+  width: 100%;
+  border-radius: 3px;
+  padding: 16px 16px 16px 12px;
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  background-color: transparent;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.notion-callout_emoji {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 3px;
+  flex-shrink: 0;
+
+  & > * {
+    width: 21.6px;
+    height: 21.6px;
+    font-size: 21.6px;
+    color: black;
+  }
+}
+
+.notion-callout_text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0px;
+  margin-left: 8px;
+  width: 100%;
+}
+
 .notion-to_do {
   display: flex;
   align-items: flex-start;
@@ -330,26 +364,104 @@
   align-items: flex-start;
   width: 100%;
   padding-left: 2px;
-  color: inherit;
-  fill: inherit;
 }
 
 .notion-child_page {
-  & > span {
-    border-bottom: 0.05em solid rgba(55, 53, 47, 0.25);
-    font-weight: 500;
-    vertical-align: top;
-    cursor: pointer;
-    color: inherit;
-    text-decoration: inherit;
-    transition: all 100ms ease-in;
+  display: flex;
+  align-items: center;
+  min-width: 1px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 2px;
 
-    &:hover {
-      cursor: pointer !important;
-      background: rgba(148, 148, 148, 0.15);
-      box-shadow: 0 0 0 3px rgba(148, 148, 148, 0.15);
-      border-radius: 1px;
+  &:hover {
+    cursor: pointer !important;
+    background: rgba(148, 148, 148, 0.15);
+    border-radius: 1px;
+  }
+  .notion-text {
+    border-bottom: 0.05em solid rgba(55, 53, 47, 0.25);
+  }
+}
+
+.notion-equation {
+  display: flex;
+  padding: 2px 6px;
+  width: 100%;
+  flex-direction: column;
+  overflow: auto;
+  color: inherit;
+  fill: inherit;
+
+  .katex {
+    font: normal 1.5rem KaTeX_Main, Times New Roman, serif;
+  }
+}
+
+.notion-code {
+  position: relative;
+
+  // hljs
+  & > pre {
+    font-size: 85%;
+    tab-size: 2;
+    white-space: pre;
+    border-radius: 3px;
+  }
+
+  .notion-code_copy,
+  .notion-code_language {
+    position: absolute;
+    color: rgba(55, 53, 47, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 100ms ease-in 0s;
+
+    user-select: none;
+    height: 20px;
+    border-radius: 3px;
+    font-size: 1rem;
+    line-height: 1.2;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .notion-code_copy {
+    top: 8px;
+    right: 8px;
+
+    cursor: pointer;
+  }
+
+  .notion-code_language {
+    top: 8px;
+    left: 8px;
+  }
+
+  &:hover {
+    .notion-code_copy,
+    .notion-code_language {
+      opacity: 100;
     }
+  }
+}
+
+.notion-mention-page,
+.notion-mention-database {
+  align-items: center;
+  padding-left: 2px;
+  padding-right: 2px;
+
+  &:hover {
+    cursor: pointer !important;
+    border-radius: 1px;
+    background: rgba(148, 148, 148, 0.15);
+    box-shadow: 0 0 0 2px rgba(148, 148, 148, 0.15);
+  }
+  .notion-text {
+    border-bottom: 0.05em solid rgba(7, 7, 6, 0.25);
   }
 }
 
@@ -361,9 +473,10 @@
   @apply font-sans;
   @apply leading-normal;
 
-  min-height: 30px;
-  display: inline-flex;
+  white-space: pre-wrap;
+  word-break: break-word;
   align-items: center;
+  box-sizing: border-box;
 
   b {
     @apply font-bold;
@@ -439,24 +552,6 @@
     &.notion-red_background {
       background-color: var(--notion-red_background);
     }
-  }
-}
-
-.notion-mention-page,
-.notion-mention-database {
-  border-bottom: 0.05em solid rgba(55, 53, 47, 0.25);
-  font-weight: 500;
-  vertical-align: top;
-  cursor: pointer;
-  color: inherit;
-  text-decoration: inherit;
-  transition: all 100ms ease-in;
-
-  &:hover {
-    cursor: pointer !important;
-    background: rgba(148, 148, 148, 0.15);
-    box-shadow: 0 0 0 3px rgba(148, 148, 148, 0.15);
-    border-radius: 1px;
   }
 }
 

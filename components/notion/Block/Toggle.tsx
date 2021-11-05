@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import { ToggleBlock } from "lib/util/notion/types"
 import Text from "../Text"
-import Block from "."
-import Children from "./Children"
+import Blocks from "./Blocks"
 
 export interface ToggleProps {
   block: ToggleBlock
@@ -31,12 +30,10 @@ const Toggle: React.FC<ToggleProps> = ({ block }) => {
           viewBox="0 0 100 100"
           className="triangle"
           style={{
-            width: "0.6875em",
-            height: "0.6875em",
+            width: "0.8em",
+            height: "0.8em",
             display: "block",
             fill: "inherit",
-            flexShrink: 0,
-            backfaceVisibility: "hidden",
             transition: "transform 200ms ease-out 0s",
             transform: isOpen ? "rotateZ(180deg)" : "rotateZ(90deg)",
             opacity: 1,
@@ -45,7 +42,7 @@ const Toggle: React.FC<ToggleProps> = ({ block }) => {
           <polygon points="5.9,88.2 50,11.8 94.1,88.2 "></polygon>
         </svg>
       </div>
-      <div style={{ flex: "1 1 0px", minWidth: "1px" }}>
+      <div style={{ width: "100%" }}>
         <span
           onClick={() => setIsOpen((prev) => !prev)}
           style={{
@@ -55,7 +52,7 @@ const Toggle: React.FC<ToggleProps> = ({ block }) => {
           <Text rich_texts={block.toggle.text} block_id={block.id}></Text>
         </span>
         {isOpen && block.children && (
-          <Children blocks={block.children} parentId={block.id} />
+          <Blocks blocks={block.children} parentId={block.id} />
         )}
       </div>
     </div>

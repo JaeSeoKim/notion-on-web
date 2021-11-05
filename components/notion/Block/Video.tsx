@@ -16,7 +16,6 @@ const Video: React.FC<VideoProps> = ({ block }) => {
   const VideoContainer: React.FC<{
     src?: string
   }> = ({ src }) => {
-    // TODO: Error시 보여질 화면 구상 필요
     const style = (() => {
       if (!src) {
         return {
@@ -57,8 +56,9 @@ const Video: React.FC<VideoProps> = ({ block }) => {
     return <VideoContainer src={src} />
   }
 
-  const VideoFile = () => {
+  const NotionVideo = () => {
     const { data } = useFileSrc(block.id)
+
     if (data) {
       return <VideoContainer src={data.src} />
     }
@@ -71,7 +71,7 @@ const Video: React.FC<VideoProps> = ({ block }) => {
       {block.video.type === "external" ? (
         <ExternalVideo src={block.video.external.url} />
       ) : (
-        <VideoFile />
+        <NotionVideo />
       )}
       <Caption caption={block.video.caption} block_id={block.id} />
     </>

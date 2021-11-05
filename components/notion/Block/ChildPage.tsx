@@ -1,6 +1,8 @@
 import React from "react"
 import PageIcon from "../../icon/PageIcon"
 import { ChildPageBlock } from "../../../lib/util/notion/types"
+import Link from "next/link"
+import parseId from "../../../lib/util/notion/parseId"
 
 export interface ChildPageProps {
   block: ChildPageBlock
@@ -8,14 +10,12 @@ export interface ChildPageProps {
 
 const ChildPage: React.FC<ChildPageProps> = ({ block }) => {
   return (
-    <div className={`notion-child_page`} page-id={block.id}>
-      <span>
+    <Link href={`/${parseId(block.child_page.retrieve.id)}`} passHref>
+      <div className={`notion-child_page`}>
         <PageIcon />
-        <span className={`notion-text`} style={{ whiteSpace: "nowrap" }}>
-          {block.child_page.title}
-        </span>
-      </span>
-    </div>
+        <span className={`notion-text`}>{block.child_page.title}</span>
+      </div>
+    </Link>
   )
 }
 

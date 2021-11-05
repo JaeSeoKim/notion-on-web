@@ -5,6 +5,8 @@ import dayjs from "dayjs"
 import locale_ko from "dayjs/locale/ko"
 import LinkPageIcon from "../../icon/LinkPageIcon"
 import Annotations from "./Annotations"
+import parseId from "../../../lib/util/notion/parseId"
+import Link from "next/link"
 
 export interface RichTextProps {
   rich_text: RichTextType
@@ -47,15 +49,13 @@ const SwitchRichText: React.FC<RichTextProps> = ({ rich_text }) => {
   }
 
   if (rich_text.mention.type === "page") {
-    // TODO: page.id와 Page URL 연결 하기
     return (
-      <span
-        className={`notion-mention-page`}
-        database-id={rich_text.mention.page.id}
-      >
-        <LinkPageIcon />
-        <span style={{ whiteSpace: "nowrap" }}>{rich_text.plain_text}</span>
-      </span>
+      <Link href={`/${parseId(rich_text.mention.page.id)}`} passHref>
+        <span className={`notion-mention-page`}>
+          <LinkPageIcon />
+          <span className={`notion-text`}>{rich_text.plain_text}</span>
+        </span>
+      </Link>
     )
   }
 

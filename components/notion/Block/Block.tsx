@@ -19,6 +19,9 @@ import Image from "./Image"
 import ColumnList from "./ColumnList"
 import { BlocksContext } from "./Blocks"
 import Column from "./Column"
+import Callout from "./Callout"
+import Equation from "./Equation"
+import Code from "./Code"
 
 export interface BlockProps {
   block: BlockType
@@ -76,14 +79,23 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "numbered_list_item") {
       return <NumberedListItem block={block} />
     }
+    if (block.type === "callout") {
+      return <Callout block={block} />
+    }
+    if (block.type === "child_page") {
+      return <ChildPage block={block} />
+    }
+    if (block.type === "equation") {
+      return <Equation block={block} />
+    }
+    if (block.type === "code") {
+      return <Code block={block} />
+    }
     if (block.type === "to_do") {
       return <ToDo block={block} />
     }
     if (block.type === "toggle") {
       return <Toggle block={block} />
-    }
-    if (block.type === "child_page") {
-      return <ChildPage block={block} />
     }
     console.log(`Unsupport block : ${block.type}__${block.id}`)
     return null

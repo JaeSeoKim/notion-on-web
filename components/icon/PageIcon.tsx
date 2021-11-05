@@ -4,7 +4,8 @@ const PageIcon = () => (
   <span
     style={{
       whiteSpace: "nowrap",
-      width: "1.1em",
+      width: "24px",
+      height: "24px",
       display: "inline-block",
       verticalAlign: "-0.15em",
       position: "relative",
@@ -15,9 +16,6 @@ const PageIcon = () => (
       style={{
         width: "100%",
         height: "100%",
-        display: "block",
-        fill: "inherit",
-        flexShrink: 0,
       }}
     />
   </span>

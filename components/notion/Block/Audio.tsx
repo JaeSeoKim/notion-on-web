@@ -1,6 +1,5 @@
 import React from "react"
 import { AudioBlock } from "lib/util/notion/types"
-import Children from "./Children"
 import Caption from "./Caption"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
 
