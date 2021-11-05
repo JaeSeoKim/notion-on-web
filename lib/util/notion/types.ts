@@ -1,6 +1,5 @@
 import {
   $ElementType,
-  $NonMaybeType,
   Assign,
   PromiseType,
   SetIntersection,
@@ -69,14 +68,6 @@ export declare type RichTextType = ValuesType<
       "paragraph"
     >
   >
->
-
-export declare type EmojiType = $ElementType<
-  $ElementType<
-    SetIntersection<GetBlockResponse, { type: "callout" }>,
-    "callout"
-  >,
-  "icon"
 >
 
 export declare type AnnotationsType = $ElementType<RichTextType, "annotations">

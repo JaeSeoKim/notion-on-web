@@ -35,7 +35,7 @@ const Image: React.FC<ImageProps> = ({ block }) => {
             <NextImage
               className={`notion-image-next`}
               alt={getImageName(block.image.file.url)}
-              src={`/api/file/${block.id}`}
+              src={block.image.file.url}
               blurDataURL={block.image.file.blurDataURL}
               placeholder={"blur"}
               layout={"fill"}
