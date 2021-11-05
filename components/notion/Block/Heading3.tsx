@@ -1,9 +1,7 @@
 import cs from "classnames"
-import Link from "next/link"
 import React from "react"
 import { Heading3Block } from "lib/util/notion/types"
 import Text from "../Text"
-import Blocks from "./Blocks"
 import FileLinkIcon from "../../icon/FileLinkIcon"
 
 export interface Heading3Props {
@@ -25,11 +23,9 @@ const Heading3: React.FC<Heading3Props> = ({ block, index }) => {
     <>
       <h3 className={cs(["notion-heading_3"])} style={style} id={block.id}>
         <Text rich_texts={block.heading_3.text} block_id={block.id} />
-        <Link href={`#${block.id}`}>
-          <a className={`notion-anchor`}>
-            <FileLinkIcon />
-          </a>
-        </Link>
+        <a href={`#${block.id}`} className={`notion-anchor`}>
+          <FileLinkIcon />
+        </a>
       </h3>
     </>
   )

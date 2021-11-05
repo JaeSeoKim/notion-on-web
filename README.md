@@ -28,7 +28,7 @@
     - [x] id 및 anchor 추가
   - [x] audio
   - [x] bookmark
-    - [x] ~~OpenGraph-CORS API 만들기 `/api/bookmark/[encodeURI]`~~ Server Side에서 fetch하여 렌더링 하도록 수정
+    - [x] OpenGraph-CORS API 만들기 `/api/opengraph/[encodeURI]` ~~Server Side에서 fetch하여 렌더링 하도록 수정~~ API로 다시 꺼내어 사용 (Build 시간 단축)
   - [x] file
   - [x] pdf
     - [x] ~~react-pdf 사용시 Nextjs에서 Component를 어떻게 전달할지 정의 필요~~ react-pdf 사용 안함. file 다운으로 치환
@@ -48,6 +48,7 @@
   - [x] equation
   - [x] code
   - [x] toggle
+  - [x] quote
   - [ ] child_database
   - [ ] to_do
   - [ ] table_of_contents
@@ -61,3 +62,4 @@
       - API response for /api/file/7cf64b0a-7751-4fe6-8675-80d3f5f460fa exceeds 4MB. This will cause the request to fail in a future version.
       - https://nextjs.org/docs/messages/api-routes-body-size-limit
       - File의 경우 응답값이 4MB를 넘어가므로 실제로 사용하는 것이 불가능 기존 방식으로 revert
+  -

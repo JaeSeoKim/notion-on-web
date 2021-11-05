@@ -36,6 +36,7 @@ type _block_types = $ElementType<GetBlockResponse, "type">
  * image
  * numbered_list_item
  * paragraph
+ * quote
  * to_do
  * toggle
  * table_of_contents
@@ -108,6 +109,7 @@ export declare type Block =
   | UnsupportedBlock
   | ColumnBlock
   | ColumnListBlock
+  | QuoteBlock
 
 type _OptionalChildrenBlocks = {
   children?: Block[]
@@ -129,17 +131,7 @@ export declare type BookmarkType = SetIntersection<
   }
 >
 
-export declare type BookmarkBlock = Assign<
-  BookmarkType,
-  {
-    bookmark: Assign<
-      $ElementType<BookmarkType, "bookmark">,
-      {
-        opengraph: OpenGraphType
-      }
-    >
-  }
->
+export declare type BookmarkBlock = BookmarkType
 
 export declare type BulletedListItemType = SetIntersection<
   GetBlockResponse,
@@ -397,3 +389,9 @@ export declare type ColumnListBlock = Assign<
     children: ColumnBlock[]
   }
 >
+
+export declare type QuoteType = SetIntersection<
+  GetBlockResponse,
+  { type: "quote" }
+>
+export declare type QuoteBlock = Assign<QuoteType, _OptionalChildrenBlocks>

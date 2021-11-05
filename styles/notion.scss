@@ -448,6 +448,19 @@
   }
 }
 
+.notion-quote {
+  width: 100%;
+
+  border-left: 3px solid currentcolor;
+  padding-left: 14px;
+  padding-right: 14px;
+
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 .notion-mention-page,
 .notion-mention-database {
   align-items: center;

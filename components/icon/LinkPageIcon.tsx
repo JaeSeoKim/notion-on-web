@@ -5,7 +5,7 @@ const LinkPageIcon = () => (
     style={{
       whiteSpace: "nowrap",
       width: "17px",
-      height: "1ypx",
+      height: "17px",
       display: "inline-block",
       verticalAlign: "-0.15em",
       position: "relative",

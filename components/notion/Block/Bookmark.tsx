@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react"
 import { BookmarkBlock } from "lib/util/notion/types"
 import Caption from "./Caption"
+import useOpengraph from "../../../lib/hooks/useOpengraph"
 
 export interface BookmarkProps {
   block: BookmarkBlock
@@ -13,23 +13,23 @@ const getHostname = (url: string) => {
 
 const Bookmark: React.FC<BookmarkProps> = ({ block }) => {
   const Bookmark: React.FC<BookmarkProps> = ({ block }) => {
-    const opengraph = block.bookmark.opengraph
+    const { data: opengraph } = useOpengraph(block.bookmark.url)
 
     return (
       <>
         <div className={`notion-bookmark_info`}>
           <div className={`notion-bookmark_title`}>
-            {opengraph.title
+            {opengraph?.title
               ? opengraph.title
               : getHostname(block.bookmark.url)}
           </div>
-          {opengraph.description && (
+          {opengraph?.description && (
             <div className={`notion-bookmark_description`}>
               {opengraph.description}
             </div>
           )}
           <div className={`notion-bookmark_target`}>
-            {opengraph.logo && (
+            {opengraph?.logo && (
               <img
                 className={`notion-bookmark_target_pavicon`}
                 src={opengraph.logo}
@@ -37,11 +37,11 @@ const Bookmark: React.FC<BookmarkProps> = ({ block }) => {
               />
             )}
             <div className={`notion-bookmark_target_url`}>
-              {opengraph.url ? opengraph.url : block.bookmark.url}
+              {opengraph?.url ? opengraph.url : block.bookmark.url}
             </div>
           </div>
         </div>
-        {opengraph.image && (
+        {opengraph?.image && (
           <div className={`notion-bookmark_image`}>
             <div style={{ position: "absolute", inset: "0px" }}>
               <img

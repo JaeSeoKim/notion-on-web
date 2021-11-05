@@ -22,6 +22,7 @@ import Column from "./Column"
 import Callout from "./Callout"
 import Equation from "./Equation"
 import Code from "./Code"
+import Quote from "./Quote"
 
 export interface BlockProps {
   block: BlockType
@@ -91,11 +92,14 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "code") {
       return <Code block={block} />
     }
-    if (block.type === "to_do") {
-      return <ToDo block={block} />
-    }
     if (block.type === "toggle") {
       return <Toggle block={block} />
+    }
+    if (block.type === "quote") {
+      return <Quote block={block} />
+    }
+    if (block.type === "to_do") {
+      return <ToDo block={block} />
     }
     console.log(`Unsupport block : ${block.type}__${block.id}`)
     return null

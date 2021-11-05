@@ -11,7 +11,4 @@ module.exports = {
       path.join(__dirname, "components/**"),
     ],
   },
-  experimental: {
-    swcMinify: true,
-  },
 }

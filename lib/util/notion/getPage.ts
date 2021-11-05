@@ -55,34 +55,6 @@ const getPage = async (id: string) => {
       }
     }
 
-    if (block.type === "bookmark") {
-      try {
-        return {
-          ...block,
-          bookmark: {
-            ...block.bookmark,
-            opengraph: await getOpenGraph({ url: block.bookmark.url }),
-          },
-        }
-      } catch {
-        console.log(`OpenGraph fetch fail : ${block.id}, ${block.bookmark.url}`)
-        return {
-          ...block,
-          bookmark: {
-            ...block.bookmark,
-            opengraph: {
-              url: null,
-              title: null,
-              publisher: null,
-              description: null,
-              image: null,
-              logo: null,
-            },
-          },
-        }
-      }
-    }
-
     if (!block.has_children) {
       return block
     }
