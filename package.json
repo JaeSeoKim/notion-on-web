@@ -33,6 +33,7 @@
     "plaiceholder": "^2.2.0",
     "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
+    "re2": "^1.16.0",
     "react": "^18.0.0-alpha-13455d26d-20211104",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
