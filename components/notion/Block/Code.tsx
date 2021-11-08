@@ -15,7 +15,7 @@ const Code: React.FC<CodeProps> = ({ block }) => {
     <div className={`notion-code`}>
       <span className={`notion-code_language`}>{block.code.language}</span>
       <CopyToClipboard text={plainCode}>
-        <span className={`notion-code_copy`}>Copy</span>
+        <span className={`notion-code_copy`}>copy</span>
       </CopyToClipboard>
       <SyntaxHighlighter
         language={block.code.language}

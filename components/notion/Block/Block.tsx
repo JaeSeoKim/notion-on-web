@@ -23,6 +23,7 @@ import Callout from "./Callout"
 import Equation from "./Equation"
 import Code from "./Code"
 import Quote from "./Quote"
+import Divider from "./Divider"
 
 export interface BlockProps {
   block: BlockType
@@ -100,6 +101,9 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     }
     if (block.type === "to_do") {
       return <ToDo block={block} />
+    }
+    if (block.type === "divider") {
+      return <Divider block={block} />
     }
     console.log(`Unsupport block : ${block.type}__${block.id}`)
     return null

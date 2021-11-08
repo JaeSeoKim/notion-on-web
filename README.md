@@ -50,10 +50,10 @@
   - [x] code
   - [x] toggle
   - [x] quote
+  - [x] to_do
+  - [x] divider
   - [ ] child_database
-  - [ ] to_do
   - [ ] table_of_contents
-  - [ ] divider
   - [ ] breadcrumb
 - [x] Notion-S3 File 접근 제한 시간 이슈 해결
   - [Next.js의 증분빌드](https://vercel.com/docs/concepts/next.js/incremental-static-regeneration)를 사용하게 될 경우 1시간 동안 접근 가능한 URL를 반환 즉 revaildate 시간이 1시간 보다 긴 경우 제대로 작동 하지 않는 이슈와 이전 캐시를 이용하여 응답한 경우 파일에 대해서 접근 불가능한 이슈가 있음.
@@ -63,4 +63,3 @@
       - API response for /api/file/7cf64b0a-7751-4fe6-8675-80d3f5f460fa exceeds 4MB. This will cause the request to fail in a future version.
       - https://nextjs.org/docs/messages/api-routes-body-size-limit
       - File의 경우 응답값이 4MB를 넘어가므로 실제로 사용하는 것이 불가능 기존 방식으로 revert
-  -
