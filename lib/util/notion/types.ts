@@ -407,3 +407,27 @@ export declare type SyncedBlockBlock = Assign<
   SyncedBlockType,
   _OptionalChildrenBlocks
 >
+
+export declare type LinkToPageType = SetIntersection<
+  GetBlockResponse,
+  {
+    type: "link_to_page"
+  }
+>
+
+export declare type LinkToPageBlock = Assign<
+  LinkToPageType,
+  {
+    link_to_page:
+      | {
+          type: "page_id"
+          page_id: string
+          retrieve: GetPageResponse
+        }
+      | {
+          type: "database_id"
+          database_id: string
+          retrieve: GetDatabaseResponse
+        }
+  }
+>

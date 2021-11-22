@@ -33,6 +33,16 @@
   width: 100%;
   white-space: pre-wrap;
   word-break: break-word;
+
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 3px 2px;
+
+  & > .notion-block {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+  }
 }
 
 .notion-caption {
