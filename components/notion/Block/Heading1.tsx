@@ -3,6 +3,7 @@ import React from "react"
 import { Heading1Block } from "lib/util/notion/types"
 import Text from "../Text"
 import FileLinkIcon from "../../icon/FileLinkIcon"
+import parseId from "../../../lib/util/notion/parseId"
 
 export interface Heading1Props {
   block: Heading1Block
@@ -23,7 +24,7 @@ const Heading1: React.FC<Heading1Props> = ({ block, index }) => {
     <>
       <h1 className={cs(["notion-heading_1"])} style={style} id={block.id}>
         <Text rich_texts={block.heading_1.text} block_id={block.id} />
-        <a href={`#${block.id}`} className={`notion-anchor`}>
+        <a href={`#${parseId(block.id)}`} className={`notion-anchor`}>
           <FileLinkIcon />
         </a>
       </h1>

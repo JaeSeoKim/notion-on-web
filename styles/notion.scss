@@ -33,10 +33,6 @@
   width: 100%;
   white-space: pre-wrap;
   word-break: break-word;
-
-  margin-top: 1px;
-  margin-bottom: 1px;
-  padding: 3px 2px;
 }
 
 .notion-caption {
@@ -283,10 +279,6 @@
   flex: 1 1 0px;
   display: flex;
   flex-direction: column;
-
-  .notion-text {
-    min-height: 30px;
-  }
 }
 
 .notion-bulleted_list-index,
@@ -319,7 +311,6 @@
   border: 1px solid rgba(55, 53, 47, 0.09);
   background-color: transparent;
 
-  align-items: center;
   justify-content: center;
 }
 
@@ -328,7 +319,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 24px;
+  height: 30px;
   width: 24px;
   border-radius: 3px;
   flex-shrink: 0;
@@ -504,8 +495,7 @@
 
   white-space: pre-wrap;
   word-break: break-word;
-  align-items: center;
-  box-sizing: border-box;
+  padding: 3px 2px;
 
   b {
     @apply font-bold;

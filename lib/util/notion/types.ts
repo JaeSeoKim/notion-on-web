@@ -1,6 +1,5 @@
 import {
   $ElementType,
-  $NonMaybeType,
   Assign,
   PromiseType,
   SetIntersection,
@@ -8,7 +7,6 @@ import {
 } from "utility-types"
 import { Client } from "@notionhq/client"
 import getDatabase from "./getDatabase"
-import { OpenGraphType } from "../getOpenGraph"
 
 export declare type GetBlockResponse = PromiseType<
   ReturnType<typeof Client.prototype.blocks.retrieve>
@@ -16,7 +14,7 @@ export declare type GetBlockResponse = PromiseType<
 
 type _block_types = $ElementType<GetBlockResponse, "type">
 /**
- * @version "@notionhq/client : 0.4.4"
+ * @version "@notionhq/client : 0.4.9"
  *
  * audio
  * bookmark
@@ -44,6 +42,9 @@ type _block_types = $ElementType<GetBlockResponse, "type">
  * breadcrumb
  * column_list
  * column
+ * synced_block
+ * link_to_page
+ * template
  */
 
 export declare type GetPageResponse = PromiseType<
@@ -110,6 +111,7 @@ export declare type Block =
   | ColumnBlock
   | ColumnListBlock
   | QuoteBlock
+  | SyncedBlockBlock
 
 type _OptionalChildrenBlocks = {
   children?: Block[]
@@ -152,7 +154,7 @@ export declare type CalloutType = SetIntersection<
   }
 >
 
-export declare type CalloutBlock = CalloutType
+export declare type CalloutBlock = Assign<CalloutType, _OptionalChildrenBlocks>
 
 export declare type ChildDatabaseType = SetIntersection<
   GetBlockResponse,
@@ -395,3 +397,13 @@ export declare type QuoteType = SetIntersection<
   { type: "quote" }
 >
 export declare type QuoteBlock = Assign<QuoteType, _OptionalChildrenBlocks>
+
+export declare type SyncedBlockType = SetIntersection<
+  GetBlockResponse,
+  { type: "synced_block" }
+>
+
+export declare type SyncedBlockBlock = Assign<
+  SyncedBlockType,
+  _OptionalChildrenBlocks
+>

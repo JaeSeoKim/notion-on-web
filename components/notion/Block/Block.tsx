@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+import { BlocksContext } from "./Blocks"
 import { Block as BlockType } from "lib/util/notion/types"
 import BulletedListItem from "./BulletedListItem"
 import ChildPage from "./ChildPage"
@@ -17,13 +18,13 @@ import Video from "./Video"
 import Embed from "./Embed"
 import Image from "./Image"
 import ColumnList from "./ColumnList"
-import { BlocksContext } from "./Blocks"
 import Column from "./Column"
 import Callout from "./Callout"
 import Equation from "./Equation"
 import Code from "./Code"
 import Quote from "./Quote"
 import Divider from "./Divider"
+import SyncedBlock from "./SyncedBlock"
 
 export interface BlockProps {
   block: BlockType
@@ -105,6 +106,10 @@ const Block: React.FC<BlockProps> = ({ block, index }) => {
     if (block.type === "divider") {
       return <Divider block={block} />
     }
+    if (block.type === "synced_block") {
+      return <SyncedBlock block={block} />
+    }
+
     console.log(`Unsupport block : ${block.type}__${block.id}`)
     return null
   }

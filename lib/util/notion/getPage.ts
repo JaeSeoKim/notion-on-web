@@ -1,6 +1,6 @@
 import { getPlaiceholder } from "plaiceholder"
 import { notion } from "."
-import getOpenGraph from "../getOpenGraph"
+import PromiseAllSeteldJoin from "../PromiseAllSeteldJoin"
 import getDatabase from "./getDatabase"
 import { Block, GetBlockResponse } from "./types"
 
@@ -14,7 +14,7 @@ const getPage = async (id: string) => {
   const getRecursiveChildren = async (block: GetBlockResponse) => {
     if (block.type === "image" && block.image.type === "file") {
       const { base64 } = await getPlaiceholder(block.image.file.url, {
-        size: 10,
+        size: 64,
       })
       return {
         ...block,
@@ -37,6 +37,17 @@ const getPage = async (id: string) => {
             page_id: block.id,
           }),
         },
+      }
+    }
+
+    if (block.type === "synced_block") {
+      return {
+        ...block,
+        children: await children(
+          block.synced_block.synced_from
+            ? block.synced_block.synced_from.block_id
+            : block.id
+        ),
       }
     }
 
@@ -73,17 +84,17 @@ const getPage = async (id: string) => {
         start_cursor: cursor,
       })
     if (!has_more || !next_cursor) {
-      return (await Promise.all(
+      return await PromiseAllSeteldJoin(
         results.map((block) => getRecursiveChildren(block))
-      )) as Block[]
+      )
     }
 
-    const [prev, next] = (await Promise.all([
-      Promise.all(results.map((block) => getRecursiveChildren(block))),
+    const blocks = await PromiseAllSeteldJoin([
+      PromiseAllSeteldJoin(results.map((block) => getRecursiveChildren(block))),
       children(id, next_cursor),
-    ])) as [Block[], Block[]]
+    ])
 
-    return [...prev, ...next]
+    return [].concat(...blocks)
   }
 
   const [info, data] = await Promise.all([retrieve(), children(id)])
