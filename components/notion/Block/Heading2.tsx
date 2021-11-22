@@ -24,7 +24,7 @@ const Heading2: React.FC<Heading2Props> = ({ block, index }) => {
     <>
       <h2 className={cs(["notion-heading_2"])} style={style} id={block.id}>
         <Text rich_texts={block.heading_2.text} block_id={block.id} />
-        <a href={`#${parseId(block.id)}}`} className={`notion-anchor`}>
+        <a href={`#${parseId(block.id)}`} className={`notion-anchor`}>
           <FileLinkIcon />
         </a>
       </h2>
