@@ -13,6 +13,26 @@ type options = Partial<
   >
 >
 
+export const getDatabaseQuery = async (
+  id: string,
+  { options, start_cursor }: { options?: options; start_cursor?: string } = {}
+): Promise<DatabasesQueryType> => {
+  const res = await notion.databases.query({
+    ...options,
+    database_id: id,
+    page_size: 100,
+    start_cursor: start_cursor,
+  })
+
+  if (!res.has_more || !res.next_cursor) {
+    return res.results
+  }
+  return [
+    ...res.results,
+    ...(await getDatabaseQuery(id, { start_cursor: res.next_cursor })),
+  ]
+}
+
 const getDatabase = async (id: string, options?: options) => {
   const retrieve = async () => {
     return await notion.databases.retrieve({
@@ -20,21 +40,10 @@ const getDatabase = async (id: string, options?: options) => {
     })
   }
 
-  const query = async (start_cursor?: string): Promise<DatabasesQueryType> => {
-    const res = await notion.databases.query({
-      ...options,
-      database_id: id,
-      page_size: 100,
-      start_cursor: start_cursor,
-    })
-
-    if (!res.has_more || !res.next_cursor) {
-      return res.results
-    }
-    return [...res.results, ...(await query(res.next_cursor))]
-  }
-
-  const [retrieveResult, queryResult] = await Promise.all([retrieve(), query()])
+  const [retrieveResult, queryResult] = await Promise.all([
+    retrieve(),
+    getDatabaseQuery(id, { options }),
+  ])
 
   return {
     retrieve: retrieveResult,

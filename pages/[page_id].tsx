@@ -15,11 +15,11 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
   const { page_id } = ctx.params as { page_id: string }
 
   try {
-    const { data, info } = await getPage(page_id)
+    const { retrieve, children } = await getPage(page_id)
     return {
       props: {
-        page: info,
-        blocks: data,
+        retrieve,
+        children,
       },
       revalidate: 24 * 60 * 64 /* 1 hour */,
     }
@@ -47,8 +47,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Page = ({
-  page,
-  blocks,
+  retrieve,
+  children,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
@@ -60,7 +60,7 @@ const Page = ({
           "w-full",
         ])}
       >
-        <Blocks parentId={page.id} blocks={blocks} />
+        <Blocks parentId={retrieve.id} blocks={children} />
       </article>
     </>
   )

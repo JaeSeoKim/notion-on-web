@@ -26,14 +26,6 @@ const getFileSrc = async (block_id: string) => {
   const block = await notion.blocks.retrieve({
     block_id: block_id,
   })
-
-  if (block.type === "callout") {
-    return findEmojiSrc(block.callout.icon)
-  }
-
-  if (block.type === "image") {
-    return findFileSrc(block.image)
-  }
   if (block.type === "audio") {
     return findFileSrc(block.audio)
   }
@@ -45,6 +37,34 @@ const getFileSrc = async (block_id: string) => {
   }
   if (block.type === "video") {
     return findFileSrc(block.video)
+  }
+}
+
+export const getImageSrc = async (block_id: string) => {
+  const block = await notion.blocks.retrieve({
+    block_id: block_id,
+  })
+
+  if (block.type === "callout") {
+    return findEmojiSrc(block.callout.icon)
+  }
+
+  if (block.type === "child_page") {
+    const page = await notion.pages.retrieve({
+      page_id: block.id,
+    })
+    return findEmojiSrc(page.icon)
+  }
+
+  if (block.type === "child_database") {
+    const database = await notion.databases.retrieve({
+      database_id: block.id,
+    })
+    return findEmojiSrc(database.icon)
+  }
+
+  if (block.type === "image") {
+    return findFileSrc(block.image)
   }
 }
 

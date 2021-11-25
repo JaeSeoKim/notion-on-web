@@ -3,10 +3,10 @@ import { RichTextType } from "../../../lib/util/notion/types"
 import Tex from "@matejmazur/react-katex"
 import dayjs from "dayjs"
 import locale_ko from "dayjs/locale/ko"
-import LinkPageIcon from "../../icon/LinkPageIcon"
 import Annotations from "./Annotations"
 import parseId from "../../../lib/util/notion/parseId"
 import Link from "next/link"
+import NotionIcon from "../NotionIcon"
 
 export interface RichTextProps {
   rich_text: RichTextType
@@ -14,7 +14,15 @@ export interface RichTextProps {
 
 const SwitchRichText: React.FC<RichTextProps> = ({ rich_text }) => {
   if (rich_text.type === "text") {
-    if (rich_text.text.link)
+    if (rich_text.text.link) {
+      if (rich_text.text.link.url.startsWith("/")) {
+        return (
+          <Link href={rich_text.text.link.url}>
+            <a>{rich_text.text.content}</a>
+          </Link>
+        )
+      }
+
       return (
         <a
           href={rich_text.text.link.url}
@@ -24,6 +32,7 @@ const SwitchRichText: React.FC<RichTextProps> = ({ rich_text }) => {
           {rich_text.text.content}
         </a>
       )
+    }
     return <>{rich_text.text.content}</>
   }
 
@@ -32,7 +41,14 @@ const SwitchRichText: React.FC<RichTextProps> = ({ rich_text }) => {
   }
 
   if (rich_text.mention.type === "user") {
-    return <a user-id={rich_text.mention.user.id}>{rich_text.plain_text}</a>
+    return (
+      <span
+        className={`notion-mention-user`}
+        data-user-id={rich_text.mention.user.id}
+      >
+        {rich_text.plain_text}
+      </span>
+    )
   }
 
   if (rich_text.mention.type === "database") {
@@ -42,8 +58,8 @@ const SwitchRichText: React.FC<RichTextProps> = ({ rich_text }) => {
         className={`notion-mention-database`}
         database-id={rich_text.mention.database.id}
       >
-        <LinkPageIcon />
-        <span style={{ whiteSpace: "nowrap" }}>{rich_text.plain_text}</span>
+        <NotionIcon icon={undefined} isLink block_id={""} />
+        <span className="notion-mention-text">{rich_text.plain_text}</span>
       </span>
     )
   }
@@ -52,8 +68,8 @@ const SwitchRichText: React.FC<RichTextProps> = ({ rich_text }) => {
     return (
       <Link href={`/${parseId(rich_text.mention.page.id)}`} passHref>
         <span className={`notion-mention-page`}>
-          <LinkPageIcon />
-          <span className={`notion-text`}>{rich_text.plain_text}</span>
+          <NotionIcon icon={undefined} isLink />
+          <span className="notion-mention-text">{rich_text.plain_text}</span>
         </span>
       </Link>
     )

@@ -53,10 +53,12 @@
   - [x] to_do
   - [x] divider
   - [x] synced_block
+  - [x] link_to_page
   - [ ] child_database
+    - 현재 간단하게 Table 내용 출력 성공
+    - properties에 대한 필터링 및 정렬등 등이 적용이 안되므로 어떤 형태의 레이아웃 으로 보여줄지 결정 필요
   - [ ] table_of_contents
   - [ ] breadcrumb
-  - [ ] link_to_page
   - [ ] template
 - [x] Notion-S3 File 접근 제한 시간 이슈 해결
   - [Next.js의 증분빌드](https://vercel.com/docs/concepts/next.js/incremental-static-regeneration)를 사용하게 될 경우 1시간 동안 접근 가능한 URL를 반환 즉 revaildate 시간이 1시간 보다 긴 경우 제대로 작동 하지 않는 이슈와 이전 캐시를 이용하여 응답한 경우 파일에 대해서 접근 불가능한 이슈가 있음.
@@ -66,3 +68,5 @@
       - API response for /api/file/7cf64b0a-7751-4fe6-8675-80d3f5f460fa exceeds 4MB. This will cause the request to fail in a future version.
       - https://nextjs.org/docs/messages/api-routes-body-size-limit
       - File의 경우 응답값이 4MB를 넘어가므로 실제로 사용하는 것이 불가능 기존 방식으로 revert
+  - [`/api/image/[src]?block_id`](https://jaeseokim-dev.vercel.app/api/image/https%3A%2F%2Fs3.us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F8782469d-eb5f-4978-a557-c5a968cb5786%2FKakaoTalk_Photo_2021-08-25-18-12-05.jpeg?block_id=847114de-c703-45be-a237-3f12a18fdee1)
+    - Image의 경우 Proxy 형태로 전달하도록 수정, Image의 원본 사이즈가 4mb 이상일 경우를 대비하여 추후 CloudeFlare를 이용한 API Endpoint로 대체할 예정

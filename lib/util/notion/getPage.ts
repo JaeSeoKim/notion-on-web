@@ -1,7 +1,6 @@
-import { getPlaiceholder } from "plaiceholder"
 import { notion } from "."
 import PromiseAllSeteldJoin from "../PromiseAllSeteldJoin"
-import getDatabase from "./getDatabase"
+import { getDatabaseQuery } from "./getDatabase"
 import { Block, GetBlockResponse } from "./types"
 
 const getPage = async (id: string) => {
@@ -12,22 +11,6 @@ const getPage = async (id: string) => {
   }
 
   const getRecursiveChildren = async (block: GetBlockResponse) => {
-    if (block.type === "image" && block.image.type === "file") {
-      const { base64 } = await getPlaiceholder(block.image.file.url, {
-        size: 64,
-      })
-      return {
-        ...block,
-        image: {
-          ...block.image,
-          file: {
-            ...block.image.file,
-            blurDataURL: base64,
-          },
-        },
-      }
-    }
-
     if (block.type === "child_page") {
       return {
         ...block,
@@ -51,18 +34,28 @@ const getPage = async (id: string) => {
       }
     }
 
+    if (block.type === "link_to_page") {
+      return {
+        ...block,
+        link_to_page: {
+          ...block.link_to_page,
+          retrieve: await notion.pages.retrieve({
+            page_id:
+              block.link_to_page.type === "page_id"
+                ? block.link_to_page.page_id
+                : block.link_to_page.database_id,
+          }),
+        },
+      }
+    }
+
     if (block.type === "child_database") {
-      try {
-        return {
-          ...block,
-          child_database: {
-            ...block.child_database,
-            ...(await getDatabase(block.id)),
-          },
-        }
-      } catch (_error) {
-        // TODO: linked database 결과 처리 방법 생각 하기
-        return block
+      return {
+        ...block,
+        child_database: {
+          ...block.child_database,
+          query: await getDatabaseQuery(block.id),
+        },
       }
     }
 
@@ -100,8 +93,8 @@ const getPage = async (id: string) => {
   const [info, data] = await Promise.all([retrieve(), children(id)])
 
   return {
-    info: info,
-    data: data,
+    retrieve: info,
+    children: data,
   }
 }
 

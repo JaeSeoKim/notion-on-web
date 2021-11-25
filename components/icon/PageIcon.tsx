@@ -1,24 +1,18 @@
-import { VscFile } from "react-icons/vsc"
+import React from "react"
+import { BsFileEarmarkText } from "react-icons/bs"
 
-const PageIcon = () => (
-  <span
+export interface PageIconProps {
+  style?: React.CSSProperties
+  className?: string
+}
+
+const PageIcon: React.FC<PageIconProps> = ({ className, style }) => (
+  <BsFileEarmarkText
+    className={className}
     style={{
-      whiteSpace: "nowrap",
-      width: "24px",
-      height: "24px",
-      display: "inline-block",
-      verticalAlign: "-0.15em",
-      position: "relative",
-      marginRight: "0.2em",
+      ...style,
     }}
-  >
-    <VscFile
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-    />
-  </span>
+  />
 )
 
 export default PageIcon

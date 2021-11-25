@@ -6,13 +6,13 @@ import {
   ValuesType,
 } from "utility-types"
 import { Client } from "@notionhq/client"
-import getDatabase from "./getDatabase"
+import getDatabase, { getDatabaseQuery } from "./getDatabase"
 
 export declare type GetBlockResponse = PromiseType<
   ReturnType<typeof Client.prototype.blocks.retrieve>
 >
 
-type _block_types = $ElementType<GetBlockResponse, "type">
+type _block_types = GetBlockResponse["type"]
 /**
  * @version "@notionhq/client : 0.4.9"
  *
@@ -112,6 +112,7 @@ export declare type Block =
   | ColumnListBlock
   | QuoteBlock
   | SyncedBlockBlock
+  | LinkToPageBlock
 
 type _OptionalChildrenBlocks = {
   children?: Block[]
@@ -166,7 +167,10 @@ export declare type ChildDatabaseType = SetIntersection<
 export declare type ChildDatabaseBlock = Assign<
   ChildDatabaseType,
   {
-    data: ReturnType<typeof getDatabase>
+    child_database: Assign<
+      ChildDatabaseType["child_database"],
+      { query: PromiseType<ReturnType<typeof getDatabaseQuery>> }
+    >
   }
 >
 
@@ -277,26 +281,7 @@ export declare type ImageType = SetIntersection<
   }
 >
 
-export declare type ImageBlock = Assign<
-  ImageType,
-  {
-    image:
-      | SetIntersection<
-          $ElementType<ImageType, "image">,
-          {
-            type: "external"
-          }
-        >
-      | (SetIntersection<
-          $ElementType<ImageType, "image">,
-          {
-            type: "file"
-          }
-        > & {
-          file: { blurDataURL: string }
-        })
-  }
->
+export declare type ImageBlock = Assign<ImageType, _OptionalChildrenBlocks>
 
 export declare type NumberedListItemType = SetIntersection<
   GetBlockResponse,
@@ -418,16 +403,11 @@ export declare type LinkToPageType = SetIntersection<
 export declare type LinkToPageBlock = Assign<
   LinkToPageType,
   {
-    link_to_page:
-      | {
-          type: "page_id"
-          page_id: string
-          retrieve: GetPageResponse
-        }
-      | {
-          type: "database_id"
-          database_id: string
-          retrieve: GetDatabaseResponse
-        }
+    link_to_page: Assign<
+      LinkToPageType["link_to_page"],
+      {
+        retrieve: GetPageResponse
+      }
+    >
   }
 >

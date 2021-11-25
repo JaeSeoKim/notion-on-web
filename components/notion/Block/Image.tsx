@@ -1,22 +1,16 @@
 import React, { useEffect, useRef } from "react"
 import { ImageBlock } from "../../../lib/util/notion/types"
 import Caption from "./Caption"
-import useFileSrc from "../../../lib/hooks/useFileSrc"
 import mediumZoom from "medium-zoom"
 
 export interface ImageProps {
   block: ImageBlock
 }
 
-const Image: React.FC<ImageProps> = ({ block }) => {
+const ImageBlock: React.FC<ImageProps> = ({ block }) => {
   const getImageName = (uri: string) => {
-    const slice_path = uri.split("?")[0].split("/")
-
-    const encodeFileName = slice_path[slice_path.length - 1]
-
-    return encodeFileName === ""
-      ? `image-${block.id}`
-      : decodeURI(encodeFileName)
+    const encodeFileName = new URL(uri).pathname.split("/").pop()
+    return encodeFileName ? decodeURI(encodeFileName) : `image-${block.id}`
   }
 
   const ZoomImg: React.FC<{
@@ -44,12 +38,13 @@ const Image: React.FC<ImageProps> = ({ block }) => {
 
   const NotionImage: React.FC<{
     block_id: string
-    alt: string
-    placeHolder: string
-  }> = ({ block_id, alt, placeHolder }) => {
-    const { data } = useFileSrc(block_id)
-
-    return <ZoomImg alt={alt} src={data ? data.src : placeHolder} />
+    src: string
+  }> = ({ block_id, src }) => {
+    const url = new URL(src)
+    const imageSrc = `/api/image/${encodeURIComponent(
+      `${url.origin}${url.pathname}`
+    )}?block_id=${block_id}`
+    return <ZoomImg alt={getImageName(src)} src={imageSrc} />
   }
 
   return (
@@ -60,15 +55,11 @@ const Image: React.FC<ImageProps> = ({ block }) => {
           alt={getImageName(block.image.external.url)}
         />
       ) : (
-        <NotionImage
-          block_id={block.id}
-          alt={getImageName(block.image.file.url)}
-          placeHolder={block.image.file.blurDataURL}
-        />
+        <NotionImage block_id={block.id} src={block.image.file.url} />
       )}
       <Caption caption={block.image.caption} block_id={block.id} />
     </>
   )
 }
 
-export default Image
+export default ImageBlock

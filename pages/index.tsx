@@ -4,19 +4,21 @@ import getPage from "../lib/util/notion/getPage"
 import Blocks from "../components/notion/Block/Blocks"
 
 export const getStaticProps = async (_ctx: GetStaticPropsContext) => {
-  const { data, info } = await getPage("63ddded3f0614770b4157439bb79f926")
+  const { retrieve, children } = await getPage(
+    "63ddded3f0614770b4157439bb79f926"
+  )
   return {
     props: {
-      page: info,
-      blocks: data,
+      retrieve,
+      children,
     },
     revalidate: 24 * 60 * 64 /* 1 hour */,
   }
 }
 
 const indexPage = ({
-  page,
-  blocks,
+  retrieve,
+  children,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
@@ -28,7 +30,7 @@ const indexPage = ({
           "w-full",
         ])}
       >
-        <Blocks parentId={page.id} blocks={blocks} />
+        <Blocks parentId={retrieve.id} blocks={children} />
       </article>
     </>
   )
