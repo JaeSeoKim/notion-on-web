@@ -2,7 +2,7 @@ import React from "react"
 import { PdfBlock } from "../../../lib/util/notion/types"
 import Caption from "./Caption"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
-import NotionIcon from "../NotionIcon"
+import FileLinkIcon from "../../icon/FileLinkIcon"
 
 export interface PdfProps {
   block: PdfBlock
@@ -39,7 +39,7 @@ const Pdf: React.FC<PdfProps> = ({ block }) => {
         rel="noreferrer"
       >
         <div className={`notion-file_icon`}>
-          <NotionIcon icon={undefined} placeHolderType="link" />{" "}
+          <FileLinkIcon />
         </div>
         <div className={`notion-file_name`}>{Pdfname}</div>
       </a>

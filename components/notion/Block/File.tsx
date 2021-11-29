@@ -2,7 +2,7 @@ import React from "react"
 import { FileBlock } from "../../../lib/util/notion/types"
 import Caption from "./Caption"
 import useFileSrc from "../../../lib/hooks/useFileSrc"
-import NotionIcon from "../NotionIcon"
+import FileLinkIcon from "../../icon/FileLinkIcon"
 
 export interface FileProps {
   block: FileBlock
@@ -39,7 +39,7 @@ const File: React.FC<FileProps> = ({ block }) => {
         rel="noreferrer"
       >
         <div className={`notion-file_icon`}>
-          <NotionIcon icon={undefined} placeHolderType="link" />
+          <FileLinkIcon />
         </div>
         <div className={`notion-file_name`}>{filename}</div>
       </a>

@@ -12,7 +12,11 @@ const Callout: React.FC<CalloutProps> = ({ block }) => {
   return (
     <div className={`notion-callout`}>
       <div className={`notion-callout_content`}>
-        <NotionIcon icon={block.callout.icon} block_id={block.id} />
+        <NotionIcon
+          icon={block.callout.icon}
+          placeHolderType="empty"
+          block_id={block.id}
+        />
         <div className={`notion-callout_text`}>
           <Text block_id={block.id} rich_texts={block.callout.text} />
           {block.children && (

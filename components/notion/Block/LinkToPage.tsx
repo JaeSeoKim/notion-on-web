@@ -18,6 +18,7 @@ const LinkToPage: React.FC<LinkToPageProps> = ({ block }) => {
       <div className={`notion-link_page`}>
         <NotionIcon
           icon={block.link_to_page.retrieve.icon}
+          placeHolderType="page"
           isLink
           block_id={block.id}
         />

@@ -15,7 +15,11 @@ const ChildPage: React.FC<ChildPageProps> = ({ block }) => {
   return (
     <Link href={`/${parseId(block.child_page.retrieve.id)}`} passHref>
       <div className={`notion-link_page`}>
-        <NotionIcon icon={block.child_page.retrieve.icon} block_id={block.id} />
+        <NotionIcon
+          icon={block.child_page.retrieve.icon}
+          placeHolderType="page"
+          block_id={block.id}
+        />
         <Text rich_texts={title} block_id={block.id} />
       </div>
     </Link>
