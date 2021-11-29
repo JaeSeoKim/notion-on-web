@@ -9,6 +9,7 @@
   --notion-pink: rgb(173, 26, 114);
   --notion-red: rgb(224, 62, 62);
 
+  --notion-default_background: rgba(227, 226, 224);
   --notion-red_background: rgb(251, 228, 228);
   --notion-pink_background: rgb(244, 223, 235);
   --notion-blue_background: rgb(221, 235, 241);
@@ -20,7 +21,7 @@
   --notion-gray_background: rgb(235, 236, 237);
 }
 
-.notion-page {
+.notion-container {
   @apply px-6 pb-64;
 
   @media (min-width: theme("screens.md")) {
@@ -265,7 +266,7 @@
   flex-direction: column;
   @media (min-width: theme("screens.sm")) {
     flex-direction: row;
-    gap: 46px;
+    gap: 24px;
   }
 }
 
@@ -338,6 +339,7 @@
 }
 
 .notion-icon {
+  display: inline-flex;
   width: 21.6px;
   height: 21.6px;
   font-size: 21.6px;
@@ -364,7 +366,7 @@
     display: flex;
     width: 24px;
     height: 24px;
-    padding: 3.5px;
+    padding: 1px;
 
     align-items: center;
     justify-content: center;
@@ -387,10 +389,6 @@
 .notion-link_page {
   display: flex;
   align-items: center;
-  min-width: 1px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 2px;
 
   &:hover {
     cursor: pointer !important;
@@ -480,8 +478,8 @@
   }
 }
 
-.notion-mention-page,
-.notion-mention-database {
+.notion-page,
+.notion-database {
   height: 30px;
   align-items: center;
   padding-left: 2px;
@@ -494,18 +492,7 @@
     box-shadow: 0 0 0 2px rgba(148, 148, 148, 0.15);
   }
 
-  .notion-icon-container {
-    width: 1.2em;
-    height: auto;
-    margin-right: 0.1em;
-  }
-
-  .notion-icon {
-    width: 100%;
-    height: 100%;
-  }
-
-  .notion-mention-text {
+  .notion-text {
     border-bottom: 0.05em solid rgba(55, 53, 47, 0.25);
     font-weight: 500;
   }
@@ -513,6 +500,37 @@
 
 .notion-children {
   @apply pl-6;
+}
+
+.notion-users,
+.notion-selects {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.notion-select {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  border-radius: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+
+  font-size: 14px;
+  line-height: 120%;
+  color: rgb(65, 36, 84);
+}
+
+.notion-mention {
+  .notion-icon-container {
+    width: 1.125em;
+    height: auto;
+    margin-right: 0.1em;
+  }
+}
+
+.notion-formula {
+  display: inline-flex;
 }
 
 .notion-text {
@@ -600,8 +618,9 @@
   }
 }
 
-.notion-mention-user,
-.notion-mention-date {
+.notion-user,
+.notion-date {
+  display: inline-block;
   opacity: 0.5;
   cursor: pointer;
 }
@@ -634,6 +653,9 @@
   color: var(--notion-red);
 }
 
+.notion-default_background {
+  background-color: var(--notion-default_background);
+}
 .notion-gray_background {
   background-color: var(--notion-gray_background);
 }

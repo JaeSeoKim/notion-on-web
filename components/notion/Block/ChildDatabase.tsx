@@ -4,6 +4,7 @@ import { ChildDatabaseBlock } from "../../../lib/util/notion/types"
 import Text from "../Text"
 import getPropertyTitle from "../../../lib/util/notion/getPropertyTitle"
 import NotionIcon from "../NotionIcon"
+import Property from "../Coommon/Property"
 
 export interface ChildDatabaseProps {
   block: ChildDatabaseBlock
@@ -15,11 +16,15 @@ const ChildDatabase: React.FC<ChildDatabaseProps> = ({ block }) => {
     <div>
       <h5>{title}</h5>
       {query.map((value) => (
-        <div key={value.id}>
+        <div className="notion-table" key={value.id}>
           {/* Title */}
           <Link href={`/${value.id}`}>
             <a>
-              <NotionIcon icon={value.icon} block_id={value.id} />
+              <NotionIcon
+                icon={value.icon}
+                block_id={value.id}
+                placeHolderType="empty"
+              />
               <Text
                 rich_texts={getPropertyTitle(value.properties)}
                 block_id={block.id}
@@ -29,17 +34,12 @@ const ChildDatabase: React.FC<ChildDatabaseProps> = ({ block }) => {
 
           {/* Other properties */}
           {Object.keys(value.properties).map((key) => {
-            const property = value.properties[key]
-            switch (property.type) {
-              case "rich_text":
-                return (
-                  <Text rich_texts={property.rich_text} block_id={block.id} />
-                )
-              case "select":
-                return <span>{property.select?.name}</span>
-              default:
-                break
-            }
+            return (
+              <Property
+                key={value.properties[key].id}
+                property={value.properties[key]}
+              />
+            )
           })}
         </div>
       ))}

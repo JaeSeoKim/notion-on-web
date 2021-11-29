@@ -22,7 +22,11 @@ export interface getOpenGraphProps {
 }
 
 const getOpenGraph = async ({ url }: getOpenGraphProps) => {
-  const { url: requestURL, body } = await got(url)
+  const { url: requestURL, body } = await got(url, {
+    headers: {
+      "User-agent": "OpenGraph Scraper Bot",
+    },
+  })
 
   const results = await metaScraper({
     url: requestURL,

@@ -12,7 +12,7 @@ export const getStaticProps = async (_ctx: GetStaticPropsContext) => {
       retrieve,
       children,
     },
-    revalidate: 24 * 60 * 64 /* 1 hour */,
+    revalidate: 60 /* 1 minute */,
   }
 }
 
@@ -24,7 +24,7 @@ const indexPage = ({
     <>
       <article
         className={classNames([
-          "notion-page",
+          "notion-container",
           "mx-auto",
           "max-w-screen-md",
           "w-full",

@@ -1,39 +1,43 @@
-const CheckBoxIcon = ({ checked }: { checked: boolean }) => {
+import React from "react"
+import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md"
+
+export interface CheckBoxIconProps {
+  style?: React.CSSProperties
+  className?: string
+  checked: boolean
+}
+
+const CheckBoxIcon: React.FC<CheckBoxIconProps> = ({
+  style,
+  className,
+  checked,
+}) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        cursor: "pointer",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "17px",
-        height: "17px",
-        userSelect: "none",
-        ...(checked ? { background: "rgb(46, 170, 220)" } : {}),
-      }}
-    >
+    <>
       {checked ? (
-        <svg
-          viewBox="0 0 14 14"
+        <MdCheckBox
+          className={className}
           style={{
-            display: "block",
-            fill: "white",
+            display: "inline-block",
+            width: "24px",
+            height: "24px",
+            ...style,
           }}
-        >
-          <polygon points="5.5 11.9993304 14 3.49933039 12.5 2 5.5 8.99933039 1.5 4.9968652 0 6.49933039"></polygon>
-        </svg>
+          fill="rgb(46, 170, 220)"
+        />
       ) : (
-        <svg
-          viewBox="0 0 16 16"
+        <MdCheckBoxOutlineBlank
+          className={className}
           style={{
-            display: "block",
-            fill: "black",
+            display: "inline-block",
+
+            width: "24px",
+            height: "24px",
+            ...style,
           }}
-        >
-          <path d="M1.5,1.5 L1.5,14.5 L14.5,14.5 L14.5,1.5 L1.5,1.5 Z M0,0 L16,0 L16,16 L0,16 L0,0 Z"></path>
-        </svg>
+        />
       )}
-    </div>
+    </>
   )
 }
 

@@ -64,6 +64,36 @@ export declare type DatabasesQueryType = $ElementType<
   "results"
 >
 
+export declare type PropertyType = DatabasesQueryType[0]["properties"][0]
+
+export declare type SelectType = SetIntersection<
+  PropertyType,
+  {
+    type: "select"
+  }
+>["select"]
+
+export declare type MultiSelectType = SetIntersection<
+  PropertyType,
+  {
+    type: "multi_select"
+  }
+>["multi_select"]
+
+export declare type FormulaType = SetIntersection<
+  PropertyType,
+  {
+    type: "formula"
+  }
+>["formula"]
+
+export declare type MentionType = SetIntersection<
+  RichTextType,
+  {
+    type: "mention"
+  }
+>["mention"]
+
 export declare type RichTextType = ValuesType<
   ValuesType<
     $ElementType<

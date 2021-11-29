@@ -21,7 +21,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
         retrieve,
         children,
       },
-      revalidate: 24 * 60 * 64 /* 1 hour */,
+      revalidate: 60 /* 1 minute */,
     }
   } catch (error) {
     console.error("page error : ", page_id, error)
@@ -54,7 +54,7 @@ const Page = ({
     <>
       <article
         className={classNames([
-          "notion-page",
+          "notion-container",
           "mx-auto",
           "max-w-screen-md",
           "w-full",

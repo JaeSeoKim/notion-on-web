@@ -7,19 +7,20 @@ import PageIcon from "../icon/PageIcon"
 
 export type NotionIconProps =
   | {
-      icon: EmojiType
       isLink?: unknown
-      block_id: string
       style?: React.CSSProperties
       className?: string
-    }
-  | {
-      icon: undefined
-      isLink?: unknown
-      block_id?: string
-      style?: React.CSSProperties
-      className?: string
-    }
+      placeHolderType: "empty" | "page"
+    } & (
+      | {
+          icon: EmojiType
+          block_id: string
+        }
+      | {
+          icon: undefined
+          block_id?: string
+        }
+    )
 
 const NotionIcon: React.FC<NotionIconProps> = ({
   icon,
@@ -27,7 +28,12 @@ const NotionIcon: React.FC<NotionIconProps> = ({
   block_id,
   className,
   style,
+  placeHolderType = "empty",
 }) => {
+  if (!icon && placeHolderType === "empty") {
+    return null
+  }
+
   const getFileName = (uri: string) => {
     const url = new URL(uri)
     return url.pathname.split("/").pop()
@@ -92,7 +98,14 @@ const NotionIcon: React.FC<NotionIconProps> = ({
 
   const SwitchIcon = () => {
     if (!icon) {
-      return <PageIcon style={style} className={cs("notion-icon", className)} />
+      switch (placeHolderType) {
+        case "page":
+          return (
+            <PageIcon style={style} className={cs("notion-icon", className)} />
+          )
+        default:
+          return null
+      }
     }
     switch (icon.type) {
       case "emoji":
