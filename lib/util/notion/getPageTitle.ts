@@ -11,7 +11,7 @@ const getPageTitle: (retrieve: GetPageResponse) => RichTextType[] = (
   ) {
     return retrieve.properties.title.title
   }
-  return getPropertyTitle(retrieve.properties)
+  return getPropertyTitle(retrieve.properties).property
 }
 
 export default getPageTitle
