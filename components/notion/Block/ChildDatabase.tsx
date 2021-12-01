@@ -12,10 +12,19 @@ export interface ChildDatabaseProps {
 
 const ChildDatabase: React.FC<ChildDatabaseProps> = ({ block }) => {
   const { title, query } = block.child_database
+
+  const { key: titleKey } = getPropertyTitle(query[0].properties)
   return (
     <div className="notion-table">
-      {/* <h5>{title}</h5> */}
+      <h5>{title}</h5>
       <table>
+        <tr>
+          <th>{titleKey}</th>
+          {Object.keys(query[0].properties).map((key) => {
+            if (query[0].properties[key].type === "title") return null
+            return <th key={key}>{key}</th>
+          })}
+        </tr>
         {query.map((value) => (
           <tr key={value.id}>
             <td>
@@ -26,10 +35,11 @@ const ChildDatabase: React.FC<ChildDatabaseProps> = ({ block }) => {
                     block_id={value.id}
                     placeHolderType="empty"
                   />
-                  <Text
-                    rich_texts={getPropertyTitle(value.properties)}
-                    block_id={block.id}
-                  />
+                  <span>
+                    {getPropertyTitle(value.properties)
+                      .property.map((v) => v.plain_text)
+                      .join("")}
+                  </span>
                 </a>
               </Link>
             </td>
