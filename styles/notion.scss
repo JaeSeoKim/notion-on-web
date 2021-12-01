@@ -498,6 +498,51 @@
   }
 }
 
+.notion-table {
+  td,
+  th {
+    @apply px-2 py-1 w-full;
+    @apply border border-gray-300;
+
+    &:first-child {
+      border-left: none;
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  th {
+  }
+
+  tr {
+    &:first-child {
+      td,
+      th {
+        border-top: none;
+      }
+    }
+    &:last-child {
+      td,
+      th {
+        border-bottom: none;
+      }
+    }
+  }
+
+  table {
+    @apply border rounded border-gray-300;
+    @apply table-fixed;
+    @apply block mb-6;
+    @apply w-full;
+    @apply overflow-x-auto;
+    @apply whitespace-nowrap;
+    * {
+      @apply whitespace-nowrap;
+    }
+  }
+}
+
 .notion-children {
   @apply pl-6;
 }

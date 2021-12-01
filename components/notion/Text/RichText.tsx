@@ -1,13 +1,9 @@
 import React from "react"
 import { RichTextType } from "../../../lib/util/notion/types"
 import Tex from "@matejmazur/react-katex"
-import dayjs from "dayjs"
-import locale_ko from "dayjs/locale/ko"
 import Annotations from "./Annotations"
-import parseId from "../../../lib/util/notion/parseId"
 import Link from "next/link"
-import NotionIcon from "../NotionIcon"
-import Mention from "../Coommon/Mention"
+import Mention from "../Common/Mention"
 
 export interface RichTextProps {
   rich_text: RichTextType
